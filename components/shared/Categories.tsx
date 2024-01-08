@@ -3,9 +3,7 @@
 import { usePathname, useSearchParams } from 'next/navigation';
 import { TbBeach, TbMountain, TbPool } from 'react-icons/tb';
 import {
-  GiBarn,
   GiBoatFishing,
-  GiCactus,
   GiCastle,
   GiCaveEntrance,
   GiForestCamp,
@@ -13,14 +11,13 @@ import {
   GiWindmill
 } from 'react-icons/gi';
 import { FaSkiing } from 'react-icons/fa';
-import { BsSnow } from 'react-icons/bs';
-import { IoDiamond } from 'react-icons/io5';
 import { MdOutlineVilla } from 'react-icons/md';
 
 import CategoryBox from './CategoryBox';
 import Container from './Container';
+import { ICategory } from '@/types';
 
-export const categories = [
+export const categories: ICategory[] = [
   {
     label: 'Beach',
     icon: TbBeach,
@@ -76,26 +73,6 @@ export const categories = [
     icon: GiForestCamp,
     description: 'This property offers camping activities!'
   },
-  {
-    label: 'Arctic',
-    icon: BsSnow,
-    description: 'This property is in arctic environment!'
-  },
-  {
-    label: 'Desert',
-    icon: GiCactus,
-    description: 'This property is in the desert!'
-  },
-  {
-    label: 'Barns',
-    icon: GiBarn,
-    description: 'This property is in a barn!'
-  },
-  {
-    label: 'Lux',
-    icon: IoDiamond,
-    description: 'This property is brand new and luxurious!'
-  }
 ]
 
 const Categories = () => {
