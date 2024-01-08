@@ -16,6 +16,7 @@
     "clsx": "^2.1.0",
     "lucide-react": "^0.303.0",
     "next": "14.0.4",
+    "query-string": "^8.1.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.49.2",

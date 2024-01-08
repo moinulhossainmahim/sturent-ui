@@ -1,3 +1,4 @@
+import Categories from "../Categories";
 import Container from "../Container";
 import Logo from "./Logo";
 import NavItems from "./NavItems";
@@ -25,6 +26,7 @@ const Header = () => {
           </div>
         </Container>
       </div>
+      <Categories />
     </div>
   )
 }
