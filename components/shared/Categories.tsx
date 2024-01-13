@@ -38,7 +38,7 @@ const Categories = () => {
   }
 
   return (
-    <Container>
+    <Container isCategory={true}>
       <div
         className="
           pt-4
@@ -47,6 +47,7 @@ const Categories = () => {
           items-center
           justify-between
           overflow-x-auto
+          w-[40%]
         "
       >
         {categories.map((item) => (
