@@ -1,3 +1,5 @@
+'use client';
+
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
@@ -6,13 +8,12 @@ import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../Input";
 import Button from "../Button";
+import useRegisterModal from "@/app/hooks/useRegisterModal";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
-interface RegisterModalProps {
-  isOpen: boolean;
-  setIsOpen: Function;
-}
-
-const RegisterModal = ({ isOpen, setIsOpen } : RegisterModalProps) => {
+const RegisterModal = () => {
+  const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
   const {
     register,
     handleSubmit,
@@ -90,7 +91,10 @@ const RegisterModal = ({ isOpen, setIsOpen } : RegisterModalProps) => {
       >
         <p>Already have an account?
           <span
-            onClick={() => {}}
+            onClick={() => {
+              registerModal.onClose()
+              loginModal.onOpen()
+            }}
             className="
               text-neutral-800
               cursor-pointer
@@ -106,11 +110,10 @@ const RegisterModal = ({ isOpen, setIsOpen } : RegisterModalProps) => {
     <Modal
       disabled={false}
       onSubmit={handleSubmit(onSubmit)}
-      isOpen={isOpen}
-      setIsOpen={setIsOpen}
+      isOpen={registerModal.isOpen}
       title="Register"
       actionLabel="Continue"
-      onClose={() => {}}
+      onClose={registerModal.onClose}
       body={bodyContent}
       footer={footerContent}
     />
