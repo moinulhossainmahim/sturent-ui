@@ -1,7 +1,7 @@
 import Categories from "../Categories";
 import Container from "../Container";
 import Logo from "./Logo";
-import NavItems from "./NavItems";
+import Search from "./Search";
 import UserMenu from "./UserMenu";
 
 const Header = () => {
@@ -19,8 +19,8 @@ const Header = () => {
             "
           >
             <Logo />
+            <Search />
             <div className="flex justify-between items-center gap-5">
-              <NavItems />
               <UserMenu />
             </div>
           </div>
