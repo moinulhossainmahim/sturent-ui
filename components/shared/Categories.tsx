@@ -47,7 +47,7 @@ const Categories = () => {
           items-center
           justify-between
           overflow-x-auto
-          w-[40%]
+          w-[90%] sm:w-[80%] md:w-[50%]
         "
       >
         {categories.map((item) => (
