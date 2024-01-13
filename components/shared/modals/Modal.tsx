@@ -16,7 +16,6 @@ interface ModalProps {
   disabled?: boolean;
   secondaryAction?: () => void;
   secondaryActionLabel?: string;
-  setIsOpen?: Function;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -30,7 +29,6 @@ const Modal: React.FC<ModalProps> = ({
   disabled,
   secondaryAction,
   secondaryActionLabel,
-  setIsOpen,
 }) => {
   const [showModal, setShowModal] = useState(isOpen);
 
@@ -44,9 +42,6 @@ const Modal: React.FC<ModalProps> = ({
     }
 
     setShowModal(false);
-    if (setIsOpen) {
-      setIsOpen(false)
-    }
     setTimeout(() => {
       onClose();
     }, 300)
