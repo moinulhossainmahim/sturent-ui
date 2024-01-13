@@ -1,3 +1,5 @@
+'use client';
+
 import { FieldValues, useForm } from "react-hook-form";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
@@ -6,13 +8,12 @@ import Modal from "./Modal";
 import Heading from "../Heading";
 import Button from "../Button";
 import Input from "../Input" ;
+import useLoginModal from "@/app/hooks/useLoginModal";
+import useRegisterModal from "@/app/hooks/useRegisterModal";
 
-interface LoginModalProps {
-  isOpen: boolean;
-  setIsOpen: Function;
-}
-
-const LoginModal = ({ isOpen, setIsOpen } : LoginModalProps) => {
+const LoginModal = () => {
+  const loginModal = useLoginModal();
+  const registerModal = useRegisterModal();
   const {
     register,
     formState: {
@@ -76,6 +77,10 @@ const LoginModal = ({ isOpen, setIsOpen } : LoginModalProps) => {
       >
         <p>Not registered yet?
           <span
+            onClick={() => {
+              registerModal.onOpen()
+              loginModal.onClose()
+            }}
             className="
               text-neutral-800
               cursor-pointer
@@ -91,11 +96,10 @@ const LoginModal = ({ isOpen, setIsOpen } : LoginModalProps) => {
     <Modal
       disabled={false}
       onSubmit={() => {}}
-      isOpen={isOpen}
-      setIsOpen={setIsOpen}
+      isOpen={loginModal.isOpen}
       title="Login"
       actionLabel="Continue"
-      onClose={() => {}}
+      onClose={loginModal.onClose}
       body={bodyContent}
       footer={footerContent}
     />
