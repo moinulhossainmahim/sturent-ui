@@ -11,20 +11,29 @@ const Search = () => {
   const params = useSearchParams();
 
   const  genderValue = params?.get('gender');
-  const  university = params?.get('university');
-  const  location = params?.get('location');
+  const  university = params?.get('institution');
+  const  location = params?.get('locationValue');
 
   const genderLabel = useMemo(() => {
+    if (genderValue) {
+      return genderValue;
+    }
     return 'Any One';
-  }, [genderValue]);
+  }, [genderValue, params]);
 
   const universityLabel = useMemo(() => {
+    if (university) {
+      return university;
+    }
     return 'Any Institution'
-  }, [university]);
+  }, [university, params]);
 
   const locationLabel = useMemo(() => {
+    if (location) {
+      return location;
+    }
     return 'Any Where';
-  }, [location]);
+  }, [location, params]);
 
   return (
     <div
