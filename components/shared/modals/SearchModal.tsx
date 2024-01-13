@@ -95,9 +95,8 @@ const SearchModal = () => {
     <div className="flex flex-col gap-8">
       <Heading
         title="For which gender you want the room?"
-        subtitle="Find the perfect location!"
       />
-      <Gender />
+      <Gender gender={gender} setGender={setGender} />
     </div>
   )
 
@@ -108,7 +107,7 @@ const SearchModal = () => {
           title="What Institution nears to you?"
           subtitle="Make sure everyone is free!"
         />
-        <Institution />
+        <Institution institution={institution} setInstitution={setInstitution} />
       </div>
     )
   }
@@ -120,7 +119,7 @@ const SearchModal = () => {
           title="More information"
           subtitle="Find your perfect place!"
         />
-        <Place />
+        <Place place={location} setplace={setLocation} />
       </div>
     )
   }
