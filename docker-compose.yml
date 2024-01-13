@@ -1,0 +1,11 @@
+
+version: '3'
+services:
+  sturent-ui-dev:
+    build: .
+    ports:
+      - "3005:3005"
+    volumes:
+       - .:/app
+        - /app/node_modules
+    restart: unless-stopped
