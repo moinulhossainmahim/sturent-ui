@@ -13,6 +13,7 @@ const page = async (
     title: '',
     description: '',
     featuredImg: '',
+    galleryImg: [],
     roomCount: 2,
     bathroomCount: 1,
     guestCount: 4,
