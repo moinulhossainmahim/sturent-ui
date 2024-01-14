@@ -2,8 +2,9 @@
 
 import { IListing } from "@/types";
 import Container from "@/components/shared/Container";
-import ListingHead from "@/components/shared/listings/ListingHead";
 import ListingInfo from "@/components/shared/listings/ListingInfo";
+import Image from "next/image";
+import Heading from "@/components/shared/Heading";
 
 interface ListingClientProps {
   listing: IListing;
@@ -16,18 +17,28 @@ const ListingClient: React.FC<ListingClientProps> = ({
     <Container>
       <div
         className="
-          max-w-screen-lg
-          mx-auto
+          max-w-[90%]
+          md:max-w-[80%]
+          m-auto
           pt-[120px]
         "
       >
-        <div className="flex flex-col gap-6">
-          <ListingHead
-            title={listing?.title || ''}
-            imageSrc={listing.featuredImg}
-            locationValue={listing.location}
-            id={listing?.id || 1}
-          />
+        <div className="flex flex-col gap-2">
+          <Heading title={listing.title} subtitle={listing.location} />
+          <div className="grid grid-cols-1 grid-rows-1 sm:grid-cols-2 sm:grid-rows-3 gap-4 md:grid-cols-3 md:grid-rows-2 h-[60vh] transition-all">
+            {listing.galleryImg.map((img, index) => (
+              <div key={index} className={`details-img ${index === 0 ? `row-span-2` : ''}`}>
+                <Image
+                  height={100}
+                  width={100}
+                  src={img}
+                  alt={img}
+                  style={{ width: '100%', height: '100%' }}
+                  className="rounded-lg hover:bg-gray-50"
+                />
+              </div>
+            ))}
+          </div>
           <div
             className="
               grid
