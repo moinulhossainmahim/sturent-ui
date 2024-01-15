@@ -1,8 +1,8 @@
 'use client';
 
 import { IconType } from "react-icons";
-import { FaBed, FaBath, FaKitchenSet, FaCar } from "react-icons/fa6";
-import { MdAllInbox, MdOutlineBalcony, MdElevator } from "react-icons/md";
+import { FaBed, FaBath, FaKitchenSet, FaCar, FaWifi } from "react-icons/fa6";
+import { MdAllInbox, MdOutlineBalcony, MdElevator, MdOutlineTableBar } from "react-icons/md";
 import { BiSolidCctv } from "react-icons/bi";
 import { Button } from "@/components/ui/button";
 
@@ -45,6 +45,11 @@ const features = [
     id: 5,
     icon: BiSolidCctv,
     name: 'CCTV Security',
+  },
+  {
+    id: 6,
+    icon: FaWifi,
+    name: 'Wifi'
   },
 ]
 
@@ -125,7 +130,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
               </div>
             ))}
           </div>
-          <Button className="mb-4" variant='outline' size='lg'>Show All Facilities</Button>
+          <Button className="mb-4 border-neutral-900" variant='outline' size='lg'>Show All Facilities</Button>
           <hr />
         </div>
       </div>
