@@ -5,6 +5,7 @@ import Header from '@/components/shared/header/Header'
 import SearchModal from '@/components/shared/modals/SearchModal'
 import LoginModal from '@/components/shared/modals/LoginModal'
 import RegisterModal from '@/components/shared/modals/RegisterModal'
+import AllFeaturesModal from '@/components/shared/modals/AllFeaturesModal'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,6 +26,7 @@ export default function RootLayout({
         <SearchModal />
         <LoginModal />
         <RegisterModal />
+        <AllFeaturesModal />
         {children}
       </body>
     </html>
