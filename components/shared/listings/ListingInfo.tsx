@@ -5,6 +5,7 @@ import { FaBed, FaBath, FaKitchenSet, FaCar, FaWifi } from "react-icons/fa6";
 import { MdAllInbox, MdOutlineBalcony, MdElevator, MdOutlineTableBar } from "react-icons/md";
 import { BiSolidCctv } from "react-icons/bi";
 import { Button } from "@/components/ui/button";
+import useListingFeaturesModal from "@/app/hooks/useListingFeaturesModal";
 
 interface ListingInfoProps {
   description?: string;
@@ -61,6 +62,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
   category,
   img
 }) => {
+  const featuresModal = useListingFeaturesModal();
 
   return (
     <div className="flex gap-5">
@@ -130,7 +132,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
               </div>
             ))}
           </div>
-          <Button className="mb-4 border-neutral-900" variant='outline' size='lg'>Show All Facilities</Button>
+          <Button className="mb-4 border-neutral-900 border-2" variant='outline' size='lg' onClick={featuresModal.onOpen}>Show All Facilities</Button>
           <hr />
         </div>
       </div>
