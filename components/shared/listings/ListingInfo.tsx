@@ -1,6 +1,8 @@
 'use client';
 
 import { IconType } from "react-icons";
+import { FaBed, FaBath } from "react-icons/fa6";
+import { MdCameraRear, MdAllInbox } from "react-icons/md";
 
 import Avatar from "../Avatar";
 import ListingCategory from "./ListingCategory";
@@ -29,53 +31,28 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
 }) => {
 
   return (
-    <div className="col-span-4 flex flex-col gap-8">
-      <div className="flex flex-col gap-2">
-        <div
-          className="
-            text-xl
-            font-semibold
-            flex
-            flex-row
-            items-center
-            gap-2
-          "
-        >
-          <div>Hosted by Eamin Tebu</div>
-          <Avatar src={img} />
-        </div>
-        <div className="
-            flex
-            flex-row
-            items-center
-            gap-4
-            font-light
-            text-neutral-500
-          "
-        >
-          <div>
-            {guestCount} guests
+    <div className="flex gap-4">
+      <div className="flex flex-col gap-4 w-3/4">
+        <h1 className="text-2xl font-bold">BDT 80 Thousand</h1>
+        <h4 className="text-md font-medium">Sector 3, Uttara, Dhaka</h4>
+        <div className="flex gap-7">
+          <div className="flex gap-1 items-center">
+            <FaBed size={20} />
+            <span>3 Beds</span>
           </div>
-          <div>
-            {roomCount} rooms
+          <div className="flex gap-1 items-center">
+            <FaBath size={20} />
+            <span>4 Baths</span>
           </div>
-          <div>
-            {bathroomCount} bathrooms
+          <div className="flex gap-1 items-center">
+            <MdAllInbox size={20} />
+            <span>2,180 sqft</span>
           </div>
         </div>
       </div>
-      <hr />
-      {category && (
-        <ListingCategory
-          icon={category.icon}
-          label={category?.label}
-          description={category?.description}
-        />
-      )}
-      <hr />
-      <div className="
-      text-lg font-light text-neutral-500">
-        {description}
+      <div className="w-1/4">
+        <h2>Subscribe card!</h2>
+        <h2>Under construction</h2>
       </div>
     </div>
    );
