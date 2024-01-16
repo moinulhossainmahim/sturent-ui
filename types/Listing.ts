@@ -11,4 +11,5 @@ export interface IListing {
   guestCount: number;
   price: number;
   location: string;
+  isSaved: boolean;
 }
