@@ -73,11 +73,11 @@ const ListingCard: React.FC<ListingCardProps> = ({
           </div>
         </div>
         <h4 className="font-semibold text-lg">
-          {data.location}
+          BDT {data.price}k Month
         </h4>
         <div className="flex flex-row items-center gap-1">
           <p className="text-sm">
-            $ {data.price} month
+            {data.location}
           </p>
         </div>
         {onAction && actionLabel && (
