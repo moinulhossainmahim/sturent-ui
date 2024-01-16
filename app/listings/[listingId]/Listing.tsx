@@ -26,7 +26,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
       >
         <div className="flex flex-col gap-2">
           <div className="flex justify-between items-center">
-            <Heading title={listing.title} subtitle={listing.location} />
+            <Heading title={listing.title} />
             <Button>
               <FaRegHeart className='mr-2 h-4 w-4' /> Save
             </Button>
