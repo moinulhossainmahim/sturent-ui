@@ -10,8 +10,9 @@ export const listings: IListing[] = [
     roomCount: 2,
     bathroomCount: 1,
     guestCount: 4,
-    price: 150,
-    location: 'Uttara, Dhaka'
+    price: 15,
+    location: 'Uttara, Dhaka',
+    isSaved: false,
   },
   {
     id: 2,
@@ -22,8 +23,9 @@ export const listings: IListing[] = [
     roomCount: 4,
     bathroomCount: 2,
     guestCount: 8,
-    price: 300,
-    location: 'Mirpur 10, Dhaka'
+    price: 30,
+    location: 'Mirpur 10, Dhaka',
+    isSaved: false,
   },
   {
     id: 3,
@@ -34,8 +36,9 @@ export const listings: IListing[] = [
     roomCount: 1,
     bathroomCount: 1,
     guestCount: 2,
-    price: 120,
-    location: 'Chakbazar, Chattogram'
+    price: 12,
+    location: 'Chakbazar, Chattogram',
+    isSaved: false,
   },
   {
     id: 4,
@@ -46,8 +49,9 @@ export const listings: IListing[] = [
     roomCount: 2,
     bathroomCount: 1,
     guestCount: 4,
-    price: 150,
-    location: 'Uttara, Dhaka'
+    price: 15,
+    location: 'Uttara, Dhaka',
+    isSaved: false,
   },
   {
     id: 5,
@@ -58,8 +62,9 @@ export const listings: IListing[] = [
     roomCount: 4,
     bathroomCount: 2,
     guestCount: 8,
-    price: 300,
-    location: 'Mirpur 10, Dhaka'
+    price: 30,
+    location: 'Mirpur 10, Dhaka',
+    isSaved: false,
   },
   {
     id: 6,
@@ -70,8 +75,9 @@ export const listings: IListing[] = [
     roomCount: 1,
     bathroomCount: 1,
     guestCount: 2,
-    price: 120,
-    location: 'Chakbazar, Chattogram'
+    price: 10,
+    location: 'Chakbazar, Chattogram',
+    isSaved: false,
   },
   {
     id: 7,
@@ -82,8 +88,9 @@ export const listings: IListing[] = [
     roomCount: 2,
     bathroomCount: 1,
     guestCount: 4,
-    price: 150,
-    location: 'Uttara, Dhaka'
+    price: 10,
+    location: 'Uttara, Dhaka',
+    isSaved: false,
   },
   {
     id: 8,
@@ -94,8 +101,9 @@ export const listings: IListing[] = [
     roomCount: 4,
     bathroomCount: 2,
     guestCount: 8,
-    price: 300,
-    location: 'Mirpur 10, Dhaka'
+    price: 31,
+    location: 'Mirpur 10, Dhaka',
+    isSaved: false,
   },
   {
     id: 9,
@@ -106,8 +114,9 @@ export const listings: IListing[] = [
     roomCount: 1,
     bathroomCount: 1,
     guestCount: 2,
-    price: 120,
-    location: 'Chakbazar, Chattogram'
+    price: 13,
+    location: 'Chakbazar, Chattogram',
+    isSaved: false,
   },
   {
     id: 10,
@@ -118,8 +127,9 @@ export const listings: IListing[] = [
     roomCount: 2,
     bathroomCount: 1,
     guestCount: 4,
-    price: 150,
-    location: 'Uttara, Dhaka'
+    price: 10,
+    location: 'Uttara, Dhaka',
+    isSaved: false,
   },
   {
     id: 11,
@@ -130,8 +140,9 @@ export const listings: IListing[] = [
     roomCount: 4,
     bathroomCount: 2,
     guestCount: 8,
-    price: 300,
-    location: 'Mirpur 10, Dhaka'
+    price: 20,
+    location: 'Mirpur 10, Dhaka',
+    isSaved: false,
   },
   {
     id: 12,
@@ -148,7 +159,8 @@ export const listings: IListing[] = [
     roomCount: 1,
     bathroomCount: 1,
     guestCount: 2,
-    price: 120,
-    location: 'Chakbazar, Chattogram'
+    price: 16,
+    location: 'Chakbazar, Chattogram',
+    isSaved: false,
   },
 ]
