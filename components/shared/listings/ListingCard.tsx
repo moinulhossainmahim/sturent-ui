@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useCallback } from "react";
 import { useRouter } from "next/navigation";
+import { IoLocation } from "react-icons/io5";
 
 import HeartButton from "../HeartButton";
 import Button from "../Button";
@@ -76,9 +77,12 @@ const ListingCard: React.FC<ListingCardProps> = ({
           BDT {data.price}k Month
         </h4>
         <div className="flex flex-row items-center gap-1">
-          <p className="text-sm">
-            {data.location}
-          </p>
+          <div className="flex gap-1 items-center">
+            <IoLocation size={22} />
+            <p className="text-sm">
+              {data.location}
+            </p>
+          </div>
         </div>
         {onAction && actionLabel && (
           <Button

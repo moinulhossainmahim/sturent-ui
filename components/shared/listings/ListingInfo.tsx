@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import useListingFeaturesModal from "@/app/hooks/useListingFeaturesModal";
 import ListingCard from "./ListingCard";
 import { Card, CardHeader, CardTitle, CardDescription, CardFooter, CardContent } from "@/components/ui/card";
+import { IoLocation } from "react-icons/io5";
 
 interface ListingInfoProps {
   description?: string;
@@ -112,7 +113,10 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
     <div className="flex gap-[10%] lg:flex-row xs:flex-col">
       <div className="flex flex-col gap-4 sm:w-full lg:w-[60%]">
         <h1 className="text-2xl font-bold">BDT 80 Thousand</h1>
-        <h4 className="text-md font-medium">Sector 3, Uttara, Dhaka</h4>
+        <div className="flex gap-1 items-center">
+          <IoLocation size={22} />
+          <h4 className="text-md font-medium">Sector 3, Uttara, Dhaka</h4>
+        </div>
         <div className="flex gap-7">
           <div className="flex gap-1 items-center">
             <FaBed size={20} />
