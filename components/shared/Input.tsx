@@ -53,7 +53,7 @@ const Input: React.FC<InputProps> = ({
           p-4
           pt-6
           font-light
-          bg-white
+          bg-input
           border-2
           rounded-md
           outline-none
@@ -61,8 +61,8 @@ const Input: React.FC<InputProps> = ({
           disabled:opacity-70
           disabled:cursor-not-allowed
           ${formatPrice ? 'pl-9' : 'pl-4'}
-          ${errors[id] ? 'border-rose-500' : 'border-neutral-300'}
-          ${errors[id] ? 'focus:border-rose-500' : 'focus:border-black'}
+          ${errors[id] ? 'primary' : 'border-muted'}
+          ${errors[id] ? 'focus:primary' : 'focus:border-card-foreground'}
         `}
       />
       <label

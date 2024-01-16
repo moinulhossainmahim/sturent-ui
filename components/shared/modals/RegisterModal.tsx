@@ -83,7 +83,7 @@ const RegisterModal = () => {
       />
       <div
         className="
-          text-neutral-500
+          text-popover-foreground
           text-center
           mt-4
           font-light
@@ -96,7 +96,7 @@ const RegisterModal = () => {
               loginModal.onOpen()
             }}
             className="
-              text-neutral-800
+              text-popover-foreground
               cursor-pointer
               hover:underline
             "

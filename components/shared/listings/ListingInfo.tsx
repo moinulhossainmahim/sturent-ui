@@ -180,7 +180,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
               </div>
             ))}
           </div>
-          <Button className="mb-4 border-neutral-900 border-2" variant='outline' size='lg' onClick={featuresModal.onOpen}>Show All Facilities</Button>
+          <Button className="mb-4 border-muted-foreground border-2" variant='outline' size='lg' onClick={featuresModal.onOpen}>See All Facilities</Button>
           <hr />
         </div>
         <div>

@@ -24,7 +24,7 @@ const Gender = ({ gender, setGender } : GenderProps) => {
       <ul className="w-[80%] flex flex-col gap-2 text-center">
         {genderList.map((item) => (
           <li
-            className={`cursor-pointer py-4 w-full bg-gray-50 font-medium rounded-md hover:bg-gray-100 ${gender === item.name ? 'bg-gray-200' : ''}`}
+            className={`cursor-pointer py-4 w-full bg-muted font-medium rounded-md ${gender === item.name ? 'bg-gray-200' : ''}`}
             onClick={() => setGender(item.name)}
           >{item.name}</li>
         ))}

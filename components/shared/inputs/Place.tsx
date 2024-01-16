@@ -34,7 +34,7 @@ const Place = ({ place, setplace } : PlaceProps) => {
           <li
             key={item.id}
             className={
-              `cursor-pointer py-4 w-full bg-gray-50 font-medium rounded-md hover:bg-gray-100 ${item.name === place ? 'bg-gray-200' : ''}`
+              `cursor-pointer py-4 w-full bg-muted font-medium rounded-md ${item.name === place ? 'bg-gray-200' : ''}`
             }
             onClick={() => setplace(item.name)}
           >{item.name}</li>

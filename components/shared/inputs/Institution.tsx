@@ -34,7 +34,7 @@ const Institution = ({ institution, setInstitution } : InstitutionProps) => {
           <li
             key={institute.id}
             className={
-              `cursor-pointer py-4 w-full bg-gray-50 font-medium rounded-md hover:bg-gray-100 ${institute.name === institution ? 'bg-gray-200' : ''}`
+              `cursor-pointer py-4 w-full bg-muted font-medium rounded-md ${institute.name === institution ? 'bg-gray-200' : ''}`
             }
             onClick={() => setInstitution(institute.name)}
           >{institute.name}</li>
