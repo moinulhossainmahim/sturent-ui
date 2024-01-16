@@ -33,14 +33,26 @@ const ListingClient: React.FC<ListingClientProps> = ({
           </div>
           <div className="grid grid-cols-1 grid-rows-1 sm:grid-cols-2 sm:grid-rows-3 gap-4 md:grid-cols-3 md:grid-rows-2 h-[60vh] transition-all">
             {listing.galleryImg.map((img, index) => (
-              <div key={index} className={`details-img ${index === 0 ? `row-span-2` : ''}`}>
+              <div
+                key={index}
+                className={
+                  `
+                  ${index === 0 ? `row-span-2` : ''}
+                  shadow-sm
+                  rounded
+                  group
+                  cursor-pointer
+                  overflow-hidden
+                  `
+                }
+              >
                 <Image
                   height={100}
                   width={100}
                   src={img}
                   alt={img}
                   style={{ width: '100%', height: '100%' }}
-                  className="rounded-lg hover:bg-gray-50"
+                  className="rounded-l group-hover:scale-105 object-cover transition"
                 />
               </div>
             ))}
