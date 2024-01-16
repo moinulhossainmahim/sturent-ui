@@ -10,6 +10,7 @@ import SearchModal from '@/components/shared/modals/SearchModal'
 import LoginModal from '@/components/shared/modals/LoginModal'
 import RegisterModal from '@/components/shared/modals/RegisterModal'
 import AllFeaturesModal from '@/components/shared/modals/AllFeaturesModal'
+import ThemeProvider from '@/components/shared/theme/theme-provider';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,13 +27,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Header />
-        <SearchModal />
-        <LoginModal />
-        <RegisterModal />
-        <AllFeaturesModal />
-        <ToastContainer />
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          <SearchModal />
+          <LoginModal />
+          <RegisterModal />
+          <AllFeaturesModal />
+          <ToastContainer />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )
