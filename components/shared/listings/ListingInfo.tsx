@@ -159,8 +159,8 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
               </div>
               <hr />
               <div className="flex gap-4 items-center">
-                <p>Last Updated</p>
-                <h5 className="text-lg font-semibold">11 January 2024</h5>
+                <p>Advance</p>
+                <h5 className="text-lg font-semibold">2 Months</h5>
               </div>
               <hr />
             </div>
