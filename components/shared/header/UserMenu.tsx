@@ -31,7 +31,7 @@ const UserMenu= () => {
               py-3
               px-4
               rounded-full
-              hover:bg-neutral-100
+              hover:bg-muted
               transition
               cursor-pointer
             "
@@ -45,7 +45,7 @@ const UserMenu= () => {
               md:py-1
               md:px-2
               border-[1px]
-              border-neutral-200
+              border-border
               flex
               flex-row
               items-center
@@ -75,7 +75,7 @@ const UserMenu= () => {
               rounded-xl
               shadow-md
               w-[200px]
-              bg-white
+              bg-card
               overflow-hidden
               right-0
               top-12

@@ -86,7 +86,7 @@ const Search = () => {
             text-sm
             pl-6
             pr-2
-            text-gray-600
+            text-foreground
             flex
             flex-row
             items-center
@@ -97,7 +97,7 @@ const Search = () => {
           <div
             className="
               p-2
-              bg-rose-500
+              bg-primary
               rounded-full
               text-white
             "
