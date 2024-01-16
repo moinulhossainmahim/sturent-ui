@@ -1,8 +1,10 @@
 'use client';
 
-import { listings } from "@/test-data/listings";
 import { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { toast } from "react-toastify";
+
+import { listings } from "@/test-data/listings";
 
 interface HeartButtonProps {
   listingId: number
@@ -15,6 +17,8 @@ const HeartButton: React.FC<HeartButtonProps> = ({
   const listing = newListings.find((listing) => listing.id === listingId);
 
   const toggleFavourite = (listingId: number) => {
+    if (listing?.isSaved) toast.success('Removed from wishlist', { autoClose: 1000 });
+    else toast.success('Added to wishlist', { autoClose: 1000 });
     setNewListings((prevListings) => prevListings.map((listing) => {
        if (listing.id === listingId) {
         return { ...listing, isSaved: !(listing.isSaved) }
