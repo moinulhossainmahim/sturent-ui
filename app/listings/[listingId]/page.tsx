@@ -19,6 +19,7 @@ const page = async (
     guestCount: 4,
     price: 150,
     location: '',
+    isSaved: false,
   };
   return (
     <Listing
