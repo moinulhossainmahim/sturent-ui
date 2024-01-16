@@ -7,6 +7,7 @@ import { BiSolidCctv } from "react-icons/bi";
 import { Button } from "@/components/ui/button";
 import useListingFeaturesModal from "@/app/hooks/useListingFeaturesModal";
 import ListingCard from "./ListingCard";
+import { Card, CardHeader, CardTitle, CardDescription, CardFooter, CardContent } from "@/components/ui/card";
 
 interface ListingInfoProps {
   description?: string;
@@ -108,8 +109,8 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
   const featuresModal = useListingFeaturesModal();
 
   return (
-    <div className="flex gap-5">
-      <div className="flex flex-col gap-4 w-3/4">
+    <div className="flex gap-[10%] lg:flex-row xs:flex-col">
+      <div className="flex flex-col gap-4 sm:w-full lg:w-[60%]">
         <h1 className="text-2xl font-bold">BDT 80 Thousand</h1>
         <h4 className="text-md font-medium">Sector 3, Uttara, Dhaka</h4>
         <div className="flex gap-7">
@@ -200,9 +201,19 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           </div>
         </div>
       </div>
-      <div className="w-1/4">
-        <h2>Subscribe card!</h2>
-        <h2>Under construction</h2>
+      <div className="sm:w-full lg:w-[30%] mt-[5%]">
+        <Card className="w-[350px]">
+          <CardHeader>
+            <CardTitle>BDT 80K Month</CardTitle>
+            <CardDescription className="mt-4">Hosted by <span className="text-primary">stuRENT</span></CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p>You will get all details after payment</p>
+          </CardContent>
+          <CardFooter className="justify-center w-full">
+            <Button size='lg'>Rent This Room</Button>
+          </CardFooter>
+        </Card>
       </div>
     </div>
    );
