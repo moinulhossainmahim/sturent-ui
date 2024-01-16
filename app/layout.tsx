@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { ToastContainer } from 'react-toastify';
+
 import './globals.css'
+import 'react-toastify/dist/ReactToastify.css';
+
 import Header from '@/components/shared/header/Header'
 import SearchModal from '@/components/shared/modals/SearchModal'
 import LoginModal from '@/components/shared/modals/LoginModal'
@@ -27,6 +31,7 @@ export default function RootLayout({
         <LoginModal />
         <RegisterModal />
         <AllFeaturesModal />
+        <ToastContainer />
         {children}
       </body>
     </html>
