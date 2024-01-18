@@ -99,12 +99,14 @@ const UserMenu= () => {
                 }}
                 label="Sign up"
               />
-              <MenuItem
-                onClick={() => {
-                  console.log('clicked')
-                }}
-                label="My Listings"
-              />
+              <Link href='/properties'>
+                <MenuItem
+                  onClick={() => {
+                    console.log('clicked')
+                  }}
+                  label="My Listings"
+                />
+              </Link>
               <Link href='/favorites'>
                 <MenuItem
                   onClick={() => {
