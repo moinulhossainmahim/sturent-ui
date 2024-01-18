@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 import { IoLocation } from "react-icons/io5";
 
 import HeartButton from "../HeartButton";
-import Button from "../Button";
 import { IListing } from "@/types";
+import ConfirmationModal from "../modals/ConfirmationModal";
 
 interface ListingCardProps {
   data: IListing;
@@ -32,7 +32,6 @@ const ListingCard: React.FC<ListingCardProps> = ({
     if (disabled) {
       return;
     }
-
     onAction?.(actionId)
   }, [disabled, onAction, actionId]);
 
@@ -85,12 +84,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
           </div>
         </div>
         {onAction && actionLabel && (
-          <Button
-            disabled={disabled}
-            small
-            label={actionLabel}
-            onClick={handleCancel}
-          />
+          <ConfirmationModal onClick={() => {}} action='Delete Properties' />
         )}
       </div>
     </div>
