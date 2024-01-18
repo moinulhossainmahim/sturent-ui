@@ -5,7 +5,7 @@ import { FaBed, FaBath, FaKitchenSet, FaCar, FaWifi } from "react-icons/fa6";
 import { MdAllInbox, MdOutlineBalcony, MdElevator } from "react-icons/md";
 import { BiSolidCctv } from "react-icons/bi";
 import { Button } from "@/components/ui/button";
-import useListingFeaturesModal from "@/app/hooks/useListingFeaturesModal";
+import useListingFeaturesModal from "@/hooks/useListingFeaturesModal";
 import ListingCard from "./ListingCard";
 import { Card, CardHeader, CardTitle, CardDescription, CardFooter, CardContent } from "@/components/ui/card";
 import { IoLocation } from "react-icons/io5";

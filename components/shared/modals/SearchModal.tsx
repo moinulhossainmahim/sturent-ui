@@ -4,7 +4,7 @@ import qs from 'query-string';
 import { useCallback, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import useSearchModal from "@/app/hooks/useSearchModal";
+import useSearchModal from "@/hooks/useSearchModal";
 
 import Modal from "./Modal";
 import Gender from '../inputs/Gender';

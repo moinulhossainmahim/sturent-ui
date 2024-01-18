@@ -15,7 +15,7 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuIte
 const Header = () => {
   const { setTheme } = useTheme();
   return (
-    <div className="fixed w-full bg-background z-10 shadow-sm">
+    <div className="w-full bg-background z-10 shadow-sm">
       <div className="py-2 border-b-[1px] border-mute">
         <Container>
           <div

@@ -1,6 +1,6 @@
 'use client';
 
-import useListingFeaturesModal from "@/app/hooks/useListingFeaturesModal";
+import useListingFeaturesModal from "@/hooks/useListingFeaturesModal";
 import Modal from "./Modal";
 import { features } from "../listings/ListingInfo";
 

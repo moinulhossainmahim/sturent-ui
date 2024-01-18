@@ -8,8 +8,8 @@ import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../Input";
 import Button from "../Button";
-import useRegisterModal from "@/app/hooks/useRegisterModal";
-import useLoginModal from "@/app/hooks/useLoginModal";
+import useRegisterModal from "@/hooks/useRegisterModal";
+import useLoginModal from "@/hooks/useLoginModal";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();

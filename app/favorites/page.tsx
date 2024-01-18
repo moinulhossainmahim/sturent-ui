@@ -1,8 +1,6 @@
 import Container from "@/components/shared/Container";
-import ListingCard from "@/components/shared/listings/ListingCard";
-import { listings } from "@/test-data/listings";
 
-export default function Home() {
+const page = () => {
   return (
     <Container>
       <div
@@ -18,13 +16,10 @@ export default function Home() {
         gap-8
         "
         >
-        {listings.map((listing) => (
-          <ListingCard
-            key={listing.id}
-            data={listing}
-          />
-          ))}
+        <h2>favorites page</h2>
       </div>
     </Container>
   )
 }
+
+export default page;

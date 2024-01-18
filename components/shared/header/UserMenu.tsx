@@ -5,8 +5,9 @@ import { AiOutlineMenu } from "react-icons/ai";
 
 import MenuItem from "./MenuItem";
 import Image from "next/image";
-import useRegisterModal from "@/app/hooks/useRegisterModal";
-import useLoginModal from "@/app/hooks/useLoginModal";
+import useRegisterModal from "@/hooks/useRegisterModal";
+import useLoginModal from "@/hooks/useLoginModal";
+import Link from "next/link";
 
 const UserMenu= () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -71,6 +72,7 @@ const UserMenu= () => {
         {isOpen && (
           <div
             className="
+              z-10
               absolute
               rounded-xl
               shadow-md
@@ -97,6 +99,20 @@ const UserMenu= () => {
                 }}
                 label="Sign up"
               />
+              <MenuItem
+                onClick={() => {
+                  console.log('clicked')
+                }}
+                label="My Listings"
+              />
+              <Link href='/favorites'>
+                <MenuItem
+                  onClick={() => {
+                    console.log('clicked')
+                  }}
+                  label="My favorites"
+                />
+              </Link>
             </div>
           </div>
         )}

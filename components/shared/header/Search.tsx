@@ -4,7 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
 import { BiSearch } from 'react-icons/bi';
 
-import useSearchModal from '@/app/hooks/useSearchModal';
+import useSearchModal from '@/hooks/useSearchModal';
 
 const Search = () => {
   const searchModal = useSearchModal();
