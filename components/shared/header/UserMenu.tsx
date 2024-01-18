@@ -102,7 +102,7 @@ const UserMenu= () => {
               <Link href='/properties'>
                 <MenuItem
                   onClick={() => {
-                    console.log('clicked')
+                    toggleOpen();
                   }}
                   label="My Listings"
                 />
@@ -110,7 +110,7 @@ const UserMenu= () => {
               <Link href='/favorites'>
                 <MenuItem
                   onClick={() => {
-                    console.log('clicked')
+                    toggleOpen();
                   }}
                   label="My favorites"
                 />
