@@ -8,11 +8,13 @@ import Image from "next/image";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import useLoginModal from "@/hooks/useLoginModal";
 import Link from "next/link";
+import useCreatePropertyModal from "@/hooks/useCreatePropertyModal";
 
 const UserMenu= () => {
   const [isOpen, setIsOpen] = useState(false);
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+  const createPropertyModal = useCreatePropertyModal();
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
@@ -23,7 +25,7 @@ const UserMenu= () => {
       <div className="relative">
         <div className="flex flex-row items-center gap-3">
           <div
-            onClick={() => console.log('clicked')}
+            onClick={() => createPropertyModal.onOpen()}
             className="
               hidden
               md:block
