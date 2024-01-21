@@ -11,6 +11,7 @@ import LoginModal from '@/components/shared/modals/LoginModal'
 import RegisterModal from '@/components/shared/modals/RegisterModal'
 import AllFeaturesModal from '@/components/shared/modals/AllFeaturesModal'
 import ThemeProvider from '@/components/shared/theme/theme-provider';
+import CreatePropertyModal from '@/components/shared/modals/CreatePropertyModal';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -39,6 +40,7 @@ export default function RootLayout({
           <RegisterModal />
           <AllFeaturesModal />
           <ToastContainer />
+          <CreatePropertyModal />
           {children}
         </ThemeProvider>
       </body>
