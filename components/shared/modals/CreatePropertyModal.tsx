@@ -15,11 +15,13 @@ import Counter from '../inputs/Counter';
 import ImageUpload from '../inputs/ImageUpload';
 import Input from '../inputs/Input';
 import useCreatePropertyModal from '@/hooks/useCreatePropertyModal';
+import { features } from '../listings/ListingInfo';
+import RoomFeature from '../RoomFeature';
 
 enum STEPS {
   CATEGORY = 0,
-  LOCATION = 1,
-  INFO = 2,
+  INFO = 1,
+  FEATURE=2,
   IMAGES = 3,
   DESCRIPTION = 4,
   PRICE = 5,
@@ -27,7 +29,7 @@ enum STEPS {
 
 const CreatePropertyModal = () => {
   const createPropertyModal = useCreatePropertyModal();
-
+  const [selectedFeatures, setSelectedFeatures] = useState<number[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [step, setStep] = useState(STEPS.CATEGORY);
 
@@ -44,19 +46,18 @@ const CreatePropertyModal = () => {
     defaultValues: {
       category: '',
       location: null,
-      guestCount: 1,
       roomCount: 1,
       bathroomCount: 1,
       imageSrc: '',
       price: 1,
       title: '',
       description: '',
+      sqft: 0,
     }
   });
 
   const category = watch('category');
   const location = watch('location');
-  const guestCount = watch('guestCount');
   const roomCount = watch('roomCount');
   const bathroomCount = watch('bathroomCount');
   const imageSrc = watch('imageSrc');
@@ -68,6 +69,16 @@ const CreatePropertyModal = () => {
       shouldValidate: true
     })
   }
+
+  const toggleFeature = (featureId: number) => {
+    if (selectedFeatures.includes(featureId)) {
+      setSelectedFeatures((prevSelected) =>
+        prevSelected.filter((id) => id !== featureId)
+      );
+    } else {
+      setSelectedFeatures((prevSelected) => [...prevSelected, featureId]);
+    }
+  };
 
   const onBack = () => {
     setStep((value) => value - 1);
@@ -130,6 +141,31 @@ const CreatePropertyModal = () => {
     </div>
   )
 
+  if(step === STEPS.FEATURE) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Which of these features available in your house?"
+          subtitle="Pick features"
+        />
+        <div
+          className="
+            grid
+            grid-cols-1
+            md:grid-cols-2
+            gap-3
+            max-h-[50vh]
+            overflow-y-auto
+          "
+        >
+          {features.map((feature) => (
+            <RoomFeature feature={feature} selectedFeatures={selectedFeatures} toggleFeature={toggleFeature} key={feature.id} />
+          ))}
+        </div>
+      </div>
+    )
+  }
+
   if (step === STEPS.INFO) {
     bodyContent = (
       <div className="flex flex-col gap-8">
@@ -137,18 +173,12 @@ const CreatePropertyModal = () => {
           title="Share some basics about your place"
           subtitle="What amenitis do you have?"
         />
-        <Counter
-          onChange={(value) => setCustomValue('guestCount', value)}
-          value={guestCount}
-          title="Guests"
-          subtitle="How many guests do you allow?"
-        />
         <hr />
         <Counter
           onChange={(value) => setCustomValue('roomCount', value)}
           value={roomCount}
-          title="Rooms"
-          subtitle="How many rooms do you have?"
+          title="Bed Rooms"
+          subtitle="How many bed rooms do you have?"
         />
         <hr />
         <Counter
@@ -156,6 +186,16 @@ const CreatePropertyModal = () => {
           value={bathroomCount}
           title="Bathrooms"
           subtitle="How many bathrooms do you have?"
+        />
+        <hr />
+        <Input
+          id="Square-feet"
+          label="Square Feet"
+          disabled={false}
+          register={register}
+          errors={errors}
+          required
+          type="number"
         />
       </div>
     )
@@ -226,7 +266,7 @@ const CreatePropertyModal = () => {
     <Modal
       disabled={isLoading}
       isOpen={createPropertyModal.isOpen}
-      title="Airbnb your home!"
+      title="stuRENT you home!"
       actionLabel={actionLabel}
       onSubmit={handleSubmit(onSubmit)}
       secondaryActionLabel={secondaryActionLabel}
