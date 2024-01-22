@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from "react";
 import { IconType } from "react-icons";
 import { FaBed, FaBath, FaKitchenSet, FaCar, FaWifi } from "react-icons/fa6";
 import { MdAllInbox, MdOutlineBalcony, MdElevator } from "react-icons/md";
@@ -9,6 +10,8 @@ import useListingFeaturesModal from "@/hooks/useListingFeaturesModal";
 import ListingCard from "./ListingCard";
 import { Card, CardHeader, CardTitle, CardDescription, CardFooter, CardContent } from "@/components/ui/card";
 import { IoLocation } from "react-icons/io5";
+import { Feature } from "@/types/Feature";
+import RoomFeature from "../RoomFeature";
 
 interface ListingInfoProps {
   description?: string;
@@ -66,7 +69,7 @@ const newListings = [
   },
 ]
 
-export const features = [
+export const features: Feature[] = [
   {
     id: 1,
     icon: MdOutlineBalcony,
@@ -174,10 +177,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           <h1 className="text-lg font-semibold my-6">What this Room offers</h1>
           <div className="flex gap-6 mb-6 flex-wrap">
             {features.map((feature) => (
-              <div className="h-[8rem] w-[10rem] flex flex-col gap-2 justify-center items-center bg-accent rounded-xl" key={feature.id}>
-                {<feature.icon size={25} />}
-                <p>{feature.name}</p>
-              </div>
+              <RoomFeature feature={feature} key={feature.id} toggleFeature={() => {}} />
             ))}
           </div>
           <Button className="mb-4 border-muted-foreground border-2" variant='outline' size='lg' onClick={featuresModal.onOpen}>See All Facilities</Button>
