@@ -7,7 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 import Modal from "./Modal";
 import Heading from "../Heading";
 import Button from "../Button";
-import Input from "../Input" ;
+import Input from "../inputs/Input";
 import useLoginModal from "@/hooks/useLoginModal";
 import useRegisterModal from "@/hooks/useRegisterModal";
 
