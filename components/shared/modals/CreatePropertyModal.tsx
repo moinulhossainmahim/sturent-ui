@@ -31,6 +31,7 @@ const CreatePropertyModal = () => {
   const createPropertyModal = useCreatePropertyModal();
   const [selectedFeatures, setSelectedFeatures] = useState<number[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [step, setStep] = useState(STEPS.CATEGORY);
 
   const {
@@ -205,10 +206,10 @@ const CreatePropertyModal = () => {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
-          title="Add a photo of your place"
+          title="Add photos of your place"
           subtitle="Show guests what your place looks like!"
         />
-        <ImageUpload />
+        <ImageUpload uploadedFiles={uploadedFiles} setUploadedFiles={setUploadedFiles} />
       </div>
     )
   }
@@ -246,7 +247,7 @@ const CreatePropertyModal = () => {
       <div className="flex flex-col gap-8">
         <Heading
           title="Now, set your price"
-          subtitle="How much do you charge per night?"
+          subtitle="How much do you charge per month?"
         />
         <Input
           id="price"
@@ -266,7 +267,7 @@ const CreatePropertyModal = () => {
     <Modal
       disabled={isLoading}
       isOpen={createPropertyModal.isOpen}
-      title="stuRENT you home!"
+      title="stuRENT your home!"
       actionLabel={actionLabel}
       onSubmit={handleSubmit(onSubmit)}
       secondaryActionLabel={secondaryActionLabel}
