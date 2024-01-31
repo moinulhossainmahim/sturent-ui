@@ -37,6 +37,7 @@ const Place = ({ place, setplace } : PlaceProps) => {
             label={item.name}
             onClick={() => setplace(item.name)}
             selected={item.name === place}
+            key={item.id}
           />
         ))}
       </div>

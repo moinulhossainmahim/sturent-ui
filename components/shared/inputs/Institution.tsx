@@ -37,6 +37,7 @@ const Institution = ({ institution, setInstitution } : InstitutionProps) => {
             onClick={() => setInstitution(institute.name)}
             selected={institute.name === institution}
             label={institute.name}
+            key={institute.id}
           />
         ))}
       </div>

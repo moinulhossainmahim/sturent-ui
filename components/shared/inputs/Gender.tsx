@@ -29,6 +29,7 @@ const Gender = ({ gender, setGender } : GenderProps) => {
             onClick={() => setGender(item.name)}
             label={item.name}
             selected={item.name === gender}
+            key={item.id}
           />
         ))}
       </div>
