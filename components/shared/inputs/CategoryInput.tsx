@@ -3,7 +3,7 @@
 import { IconType } from "react-icons";
 
 interface CategoryInputProps {
-  icon: IconType,
+  icon?: IconType,
   label: string;
   selected?: boolean;
   onClick: (value: string) => void;
@@ -31,7 +31,9 @@ const CategoryInput: React.FC<CategoryInputProps> = ({
         ${selected ? 'border-foreground' : 'border-muted'}
       `}
     >
-      <Icon size={30} />
+      {Icon ? (
+        <Icon size={30} />
+      ) : null}
       <div className="font-semibold">
         {label}
       </div>
