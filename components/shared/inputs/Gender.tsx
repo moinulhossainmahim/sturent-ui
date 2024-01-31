@@ -1,3 +1,5 @@
+import CategoryInput from "./CategoryInput";
+
 interface GenderProps {
   gender: string;
   setGender: Function;
@@ -21,15 +23,15 @@ const genderList = [
 const Gender = ({ gender, setGender } : GenderProps) => {
   return (
     <div className="w-full flex justify-center">
-      <ul className="w-[80%] flex flex-col gap-2 text-center">
+      <div className="w-[60%] flex flex-col gap-3 text-center">
         {genderList.map((item) => (
-          <li
-            key={item.id}
-            className={`cursor-pointer py-4 w-full bg-muted font-medium rounded-md ${gender === item.name ? 'bg-gray-200' : ''}`}
+          <CategoryInput
             onClick={() => setGender(item.name)}
-          >{item.name}</li>
+            label={item.name}
+            selected={item.name === gender}
+          />
         ))}
-      </ul>
+      </div>
     </div>
   )
 }
