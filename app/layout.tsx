@@ -13,6 +13,7 @@ import AllFeaturesModal from '@/components/shared/modals/AllFeaturesModal'
 import ThemeProvider from '@/components/shared/theme/theme-provider';
 import CreatePropertyModal from '@/components/shared/modals/CreatePropertyModal';
 import TanstackProvider from '@/providers/TanstackProvider';
+import ReduxProvider from '@/redux/ReduxProvider';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -29,23 +30,25 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <TanstackProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Header />
-            <SearchModal />
-            <LoginModal />
-            <RegisterModal />
-            <AllFeaturesModal />
-            <ToastContainer />
-            <CreatePropertyModal />
-            {children}
-          </ThemeProvider>
-        </TanstackProvider>
+        <ReduxProvider>
+          <TanstackProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+              >
+              <Header />
+              <SearchModal />
+              <LoginModal />
+              <RegisterModal />
+              <AllFeaturesModal />
+              <ToastContainer />
+              <CreatePropertyModal />
+              {children}
+            </ThemeProvider>
+          </TanstackProvider>
+        </ReduxProvider>
       </body>
     </html>
   )
