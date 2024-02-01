@@ -2,6 +2,10 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export enum ModalKey {
   SearchModal = 'SearchModal',
+  LoginModal = 'LoginModal',
+  RegisterModal = 'RegisterModal',
+  CreatePropertyModal = 'CreatePropertyModal',
+  ListingFeaturesModal = 'ListingFeaturesModal',
 }
 
 interface IModalAction {
@@ -13,6 +17,10 @@ export type ModalStore = Record<ModalKey, boolean>;
 
 const initialState: ModalStore = {
   [ModalKey.SearchModal]: false,
+  [ModalKey.LoginModal]: false,
+  [ModalKey.RegisterModal]: false,
+  [ModalKey.CreatePropertyModal]: false,
+  [ModalKey.ListingFeaturesModal]: false,
 }
 
 const modalSlice = createSlice({
