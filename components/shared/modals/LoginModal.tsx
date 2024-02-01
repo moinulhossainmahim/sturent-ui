@@ -1,6 +1,7 @@
 'use client';
 
 import { FieldValues, useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 
@@ -8,12 +9,12 @@ import Modal from "./Modal";
 import Heading from "../Heading";
 import Button from "../Button";
 import Input from "../inputs/Input";
-import useLoginModal from "@/hooks/useLoginModal";
-import useRegisterModal from "@/hooks/useRegisterModal";
+import { ReduxStore } from "@/redux/store";
+import { ModalKey, setModal } from "@/redux/reducers/modal";
 
 const LoginModal = () => {
-  const loginModal = useLoginModal();
-  const registerModal = useRegisterModal();
+  const dispatch = useDispatch();
+  const { LoginModal, RegisterModal } = useSelector((state: ReduxStore) => state.modal);
   const {
     register,
     formState: {
@@ -78,8 +79,8 @@ const LoginModal = () => {
         <p>Not registered yet?
           <span
             onClick={() => {
-              registerModal.onOpen()
-              loginModal.onClose()
+              dispatch(setModal({ key: ModalKey.RegisterModal, value: true }));
+              dispatch(setModal({ key: ModalKey.LoginModal, value: false }))
             }}
             className="
               text-popover-foreground
@@ -96,10 +97,10 @@ const LoginModal = () => {
     <Modal
       disabled={false}
       onSubmit={() => {}}
-      isOpen={loginModal.isOpen}
+      isOpen={LoginModal}
       title="Login"
       actionLabel="Continue"
-      onClose={loginModal.onClose}
+      onClose={() => dispatch(setModal({ key: ModalKey.LoginModal, value: false }))}
       body={bodyContent}
       footer={footerContent}
     />

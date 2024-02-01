@@ -1,20 +1,20 @@
 'use client';
 
 import { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineMenu } from "react-icons/ai";
+import Image from "next/image";
+import Link from "next/link";
 
 import MenuItem from "./MenuItem";
-import Image from "next/image";
-import useRegisterModal from "@/hooks/useRegisterModal";
-import useLoginModal from "@/hooks/useLoginModal";
-import Link from "next/link";
-import useCreatePropertyModal from "@/hooks/useCreatePropertyModal";
+import { ReduxStore } from "@/redux/store";
+import { ModalKey, setModal } from "@/redux/reducers/modal";
 
 const UserMenu= () => {
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
-  const registerModal = useRegisterModal();
-  const loginModal = useLoginModal();
-  const createPropertyModal = useCreatePropertyModal();
+  const registerModal = useSelector((state: ReduxStore) => state.modal.RegisterModal);
+  const loginModal = useSelector((state: ReduxStore) => state.modal.LoginModal);
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
@@ -25,7 +25,7 @@ const UserMenu= () => {
       <div className="relative">
         <div className="flex flex-row items-center gap-3">
           <div
-            onClick={() => createPropertyModal.onOpen()}
+            onClick={() => dispatch(setModal({ key: ModalKey.CreatePropertyModal, value: true }))}
             className="
               hidden
               md:block
@@ -89,14 +89,14 @@ const UserMenu= () => {
             <div className="flex flex-col cursor-pointer">
               <MenuItem
                 onClick={() => {
-                  loginModal.onOpen()
+                  dispatch(setModal({ key: ModalKey.LoginModal, value: true }))
                   toggleOpen();
                 }}
                 label="Login"
               />
               <MenuItem
                 onClick={() => {
-                  registerModal.onOpen()
+                  dispatch(setModal({ key: ModalKey.RegisterModal, value: true }))
                   toggleOpen();
                 }}
                 label="Sign up"

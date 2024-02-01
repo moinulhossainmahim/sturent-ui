@@ -3,17 +3,18 @@
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
 
 import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
 import Button from "../Button";
-import useRegisterModal from "@/hooks/useRegisterModal";
-import useLoginModal from "@/hooks/useLoginModal";
+import { ReduxStore } from "@/redux/store";
+import { ModalKey, setModal } from "@/redux/reducers/modal";
 
 const RegisterModal = () => {
-  const registerModal = useRegisterModal();
-  const loginModal = useLoginModal();
+  const dispatch = useDispatch();
+  const { RegisterModal } = useSelector((state: ReduxStore) => state.modal);
   const {
     register,
     handleSubmit,
@@ -92,8 +93,8 @@ const RegisterModal = () => {
         <p>Already have an account?
           <span
             onClick={() => {
-              registerModal.onClose()
-              loginModal.onOpen()
+              dispatch(setModal({ key: ModalKey.LoginModal, value: true }))
+              dispatch(setModal({ key: ModalKey.RegisterModal, value: false }));
             }}
             className="
               text-popover-foreground
@@ -110,14 +111,14 @@ const RegisterModal = () => {
     <Modal
       disabled={false}
       onSubmit={handleSubmit(onSubmit)}
-      isOpen={registerModal.isOpen}
+      isOpen={RegisterModal}
       title="Register"
       actionLabel="Continue"
-      onClose={registerModal.onClose}
+      onClose={() => dispatch(setModal({ key: ModalKey.RegisterModal, value: false }))}
       body={bodyContent}
       footer={footerContent}
     />
   )
 }
 
-export default RegisterModal
+export default RegisterModal;

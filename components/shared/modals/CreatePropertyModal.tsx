@@ -6,6 +6,7 @@ import {
   useForm
 } from 'react-hook-form';
 import { useMemo, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 
 import Modal from "./Modal";
 import { categories } from '../Categories';
@@ -14,9 +15,10 @@ import CategoryInput from '../inputs/CategoryInput';
 import Counter from '../inputs/Counter';
 import ImageUpload from '../inputs/ImageUpload';
 import Input from '../inputs/Input';
-import useCreatePropertyModal from '@/hooks/useCreatePropertyModal';
 import { features } from '../listings/ListingInfo';
 import RoomFeature from '../RoomFeature';
+import { ReduxStore } from '@/redux/store';
+import { ModalKey, setModal } from '@/redux/reducers/modal';
 
 enum STEPS {
   CATEGORY = 0,
@@ -28,7 +30,8 @@ enum STEPS {
 }
 
 const CreatePropertyModal = () => {
-  const createPropertyModal = useCreatePropertyModal();
+  const dispatch = useDispatch();
+  const isOpen = useSelector((state: ReduxStore) => state.modal.CreatePropertyModal);
   const [selectedFeatures, setSelectedFeatures] = useState<number[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
@@ -266,13 +269,13 @@ const CreatePropertyModal = () => {
   return (
     <Modal
       disabled={isLoading}
-      isOpen={createPropertyModal.isOpen}
+      isOpen={isOpen}
       title="stuRENT your home!"
       actionLabel={actionLabel}
       onSubmit={handleSubmit(onSubmit)}
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
-      onClose={createPropertyModal.onClose}
+      onClose={() => dispatch(setModal({ key: ModalKey.CreatePropertyModal, value: false }))}
       body={bodyContent}
     />
   );

@@ -1,11 +1,15 @@
 'use client';
 
-import useListingFeaturesModal from "@/hooks/useListingFeaturesModal";
-import Modal from "./Modal";
+import { useDispatch, useSelector } from "react-redux";
+
+import { ReduxStore } from "@/redux/store";
+import { ModalKey, setModal } from "@/redux/reducers/modal";
 import { features } from "../listings/ListingInfo";
+import Modal from "./Modal";
 
 const AllFeaturesModal = () => {
-  const featuresModal = useListingFeaturesModal();
+  const dispatch = useDispatch();
+  const isOpen = useSelector((state: ReduxStore) => state.modal.ListingFeaturesModal);
 
   const bodyContent = (
     <div>
@@ -23,8 +27,8 @@ const AllFeaturesModal = () => {
 
   return (
     <Modal
-      isOpen={featuresModal.isOpen}
-      onClose={featuresModal.onClose}
+      isOpen={isOpen}
+      onClose={() => dispatch(setModal({ key: ModalKey.ListingFeaturesModal, value: false }))}
       title="What this place offers"
       actionLabel=""
       onSubmit={() => {}}

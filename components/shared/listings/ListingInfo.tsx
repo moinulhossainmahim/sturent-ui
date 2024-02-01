@@ -1,17 +1,19 @@
 'use client';
 
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { IconType } from "react-icons";
 import { FaBed, FaBath, FaKitchenSet, FaCar, FaWifi } from "react-icons/fa6";
 import { MdAllInbox, MdOutlineBalcony, MdElevator } from "react-icons/md";
-import { BiSolidCctv } from "react-icons/bi";
-import { Button } from "@/components/ui/button";
-import useListingFeaturesModal from "@/hooks/useListingFeaturesModal";
-import ListingCard from "./ListingCard";
-import { Card, CardHeader, CardTitle, CardDescription, CardFooter, CardContent } from "@/components/ui/card";
 import { IoLocation } from "react-icons/io5";
+import { BiSolidCctv } from "react-icons/bi";
+
+import { Button } from "@/components/ui/button";
+import ListingCard from "./ListingCard";
 import { Feature } from "@/types/Feature";
 import RoomFeature from "../RoomFeature";
+import { ReduxStore } from "@/redux/store";
+import { Card, CardHeader, CardTitle, CardDescription, CardFooter, CardContent } from "@/components/ui/card";
+import { ModalKey, setModal } from "@/redux/reducers/modal";
 
 interface ListingInfoProps {
   description?: string;
@@ -110,7 +112,8 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
   category,
   img
 }) => {
-  const featuresModal = useListingFeaturesModal();
+  const dispatch = useDispatch();
+  const featuresModal = useSelector((state: ReduxStore) => state.modal.ListingFeaturesModal);
 
   return (
     <div className="flex gap-[10%] lg:flex-row xs:flex-col">
@@ -180,7 +183,11 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
               <RoomFeature feature={feature} key={feature.id} toggleFeature={() => {}} />
             ))}
           </div>
-          <Button className="mb-4 border-muted-foreground border-2" variant='outline' size='lg' onClick={featuresModal.onOpen}>See All Facilities</Button>
+          <Button className="mb-4 border-muted-foreground border-2"
+            variant='outline'
+            size='lg'
+            onClick={() => dispatch(setModal({ key: ModalKey.ListingFeaturesModal, value: true }))}
+          >See All Facilities</Button>
           <hr />
         </div>
         <div>

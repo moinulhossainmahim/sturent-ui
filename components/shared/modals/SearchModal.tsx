@@ -2,15 +2,16 @@
 
 import qs from 'query-string';
 import { useCallback, useMemo, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { useRouter, useSearchParams } from 'next/navigation';
-
-import useSearchModal from "@/hooks/useSearchModal";
 
 import Modal from "./Modal";
 import Gender from '../inputs/Gender';
 import Institution from '../inputs/Institution';
 import Place from '../inputs/Place';
 import Heading from '../Heading';
+import { ReduxStore } from '@/redux/store';
+import { ModalKey, setModal } from '@/redux/reducers/modal';
 
 enum STEPS {
   GENDER = 0,
@@ -20,7 +21,8 @@ enum STEPS {
 
 const SearchModal = () => {
   const router = useRouter();
-  const searchModal = useSearchModal();
+  const dispatch = useDispatch();
+  const searchModal = useSelector((state: ReduxStore) => state.modal.SearchModal);
   const params = useSearchParams();
 
   const [step, setStep] = useState(STEPS.GENDER);
@@ -61,7 +63,7 @@ const SearchModal = () => {
     }, { skipNull: true });
 
     setStep(STEPS.LOCATION);
-    searchModal.onClose();
+    dispatch(setModal({ key: ModalKey.SearchModal, value: false }));
     router.push(url);
   },
   [
@@ -126,13 +128,13 @@ const SearchModal = () => {
 
   return (
     <Modal
-      isOpen={searchModal.isOpen}
+      isOpen={searchModal}
       title="Filters"
       actionLabel={actionLabel}
       onSubmit={onSubmit}
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={step === STEPS.GENDER ? undefined : onBack}
-      onClose={searchModal.onClose}
+      onClose={() => dispatch(setModal({ key: ModalKey.SearchModal, value: false }))}
       body={bodyContent}
     />
   );

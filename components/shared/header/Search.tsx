@@ -1,13 +1,14 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSearchParams } from 'next/navigation';
 import { BiSearch } from 'react-icons/bi';
 
-import useSearchModal from '@/hooks/useSearchModal';
+import { ModalKey, setModal } from '@/redux/reducers/modal';
 
 const Search = () => {
-  const searchModal = useSearchModal();
+  const dispatch = useDispatch();
   const params = useSearchParams();
 
   const  genderValue = params?.get('gender');
@@ -37,7 +38,7 @@ const Search = () => {
 
   return (
     <div
-      onClick={searchModal.onOpen}
+      onClick={() => dispatch(setModal({ key: ModalKey.SearchModal, value: true }))}
       className="
         border-[1px]
         w-full
