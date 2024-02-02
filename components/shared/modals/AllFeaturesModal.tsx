@@ -14,7 +14,7 @@ const AllFeaturesModal = () => {
   const bodyContent = (
     <div>
       <h1 className="text-lg font-semibold my-4">General Facilities</h1>
-      <div className="flex gap-6 mb-6 flex-wrap">
+      <div className="flex gap-6 mb-6 flex-wrap justify-center">
         {features.map((feature) => (
           <div className="h-[8rem] w-[10rem] flex flex-col gap-2 justify-center items-center bg-accent rounded-xl" key={feature.id}>
             {<feature.icon size={25} />}

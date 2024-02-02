@@ -1,6 +1,6 @@
 'use client';
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { IconType } from "react-icons";
 import { FaBed, FaBath, FaKitchenSet, FaCar, FaWifi } from "react-icons/fa6";
 import { MdAllInbox, MdOutlineBalcony, MdElevator } from "react-icons/md";
@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button";
 import ListingCard from "./ListingCard";
 import { Feature } from "@/types/Feature";
 import RoomFeature from "../RoomFeature";
-import { ReduxStore } from "@/redux/store";
 import { Card, CardHeader, CardTitle, CardDescription, CardFooter, CardContent } from "@/components/ui/card";
 import { ModalKey, setModal } from "@/redux/reducers/modal";
 
@@ -113,10 +112,8 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
   img
 }) => {
   const dispatch = useDispatch();
-  const featuresModal = useSelector((state: ReduxStore) => state.modal.ListingFeaturesModal);
-
   return (
-    <div className="flex gap-[10%] lg:flex-row xs:flex-col">
+    <div className="flex gap-[10%] flex-col lg:flex-row">
       <div className="flex flex-col gap-4 sm:w-full lg:w-[60%]">
         <h1 className="text-2xl font-bold">BDT 80 Thousand</h1>
         <div className="flex gap-1 items-center">
@@ -149,8 +146,8 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         </div>
         <div>
           <h1 className="text-lg font-semibold my-6">General Information</h1>
-          <div className="flex justify-between">
-            <div className="flex flex-col gap-4 w-[45%]">
+          <div className="flex justify-normal md:justify-between flex-col md:flex-row gap-4 md:gap-0">
+            <div className="flex flex-col gap-4 w-full md:w-[45%]">
               <div className="flex gap-4 items-center">
                 <p>Type</p>
                 <h5 className="text-lg font-semibold">Room</h5>
@@ -162,7 +159,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
               </div>
               <hr />
             </div>
-            <div className="flex flex-col gap-4 w-[45%]">
+            <div className="flex flex-col gap-4 w-full md:w-[45%]">
               <div className="flex gap-4 items-center">
                 <p>Tracking no.</p>
                 <h5 className="text-lg font-semibold">TN2022234321</h5>
@@ -178,7 +175,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         </div>
         <div className="py-4">
           <h1 className="text-lg font-semibold my-6">What this Room offers</h1>
-          <div className="flex gap-6 mb-6 flex-wrap">
+          <div className="flex gap-6 mb-6 flex-wrap justify-center lg:justify-normal">
             {features.map((feature) => (
               <RoomFeature feature={feature} key={feature.id} toggleFeature={() => {}} />
             ))}
@@ -212,7 +209,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           </div>
         </div>
       </div>
-      <div className="sm:w-full lg:w-[30%] mt-[5%]">
+      <div className="sm:w-full lg:w-[30%] mt-[5%] justify-center lg:justify-normal">
         <Card className="w-[350px]">
           <CardHeader>
             <CardTitle>BDT 80K Month</CardTitle>
