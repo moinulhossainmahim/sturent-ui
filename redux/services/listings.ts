@@ -8,7 +8,7 @@ export const listingsApi = createApi({
   tagTypes: ['Listings'],
   endpoints: (builder) => ({
     getListings: builder.query<IListing[], void>({
-      query: () => '/products',
+      query: () => '/pokemon',
       providesTags: [{ type: 'Listings', id: 'LIST' }],
     }),
 
