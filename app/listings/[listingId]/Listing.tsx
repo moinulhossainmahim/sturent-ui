@@ -1,5 +1,10 @@
+'use client';
+
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa";
+import { Gallery, Item } from 'react-photoswipe-gallery';
+
+import 'photoswipe/dist/photoswipe.css'
 
 import { IListing } from "@/types";
 import Container from "@/components/shared/Container";
@@ -25,25 +30,33 @@ const ListingClient: React.FC<ListingClientProps> = ({
             </Button>
           </div>
           <div className="grid grid-cols-1 grid-rows-1 sm:grid-cols-2 sm:grid-rows-3 gap-4 md:grid-cols-3 md:grid-rows-2 transition-all">
-            {listing.galleryImg.map((img, index) => (
-              <div
-                key={index}
-                className={
-                  `
-                  ${index === 0 ? `row-span-2` : ''}
-                  shadow-sm rounded group cursor-pointer overflow-hidden`
-                }
-              >
-                <Image
-                  height={100}
-                  width={100}
-                  src={img}
-                  alt={img}
-                  style={{ width: '100%', height: '100%' }}
-                  className="rounded-l group-hover:scale-105 object-cover transition"
-                />
-              </div>
-            ))}
+            <Gallery>
+              {listing.galleryImg.map((img, index) => (
+                <div
+                  key={index}
+                  className={
+                    `
+                    ${index === 0 ? `row-span-2` : ''}
+                    shadow-sm rounded group cursor-pointer overflow-hidden`
+                  }
+                >
+                  <Item original={img} thumbnail={img} width='1000' height='600'>
+                  {({ ref, open }) => (
+                    <Image
+                      className="rounded-l group-hover:scale-105 object-cover transition"
+                      ref={ref}
+                      onClick={open}
+                      height={100}
+                      width={100}
+                      src={img}
+                      alt={img}
+                      style={{ width: '100%', height: '100%' }}
+                    />
+                  )}
+                  </Item>
+                </div>
+              ))}
+            </Gallery>
           </div>
           <ListingInfo
             category={listing.category}
