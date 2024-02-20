@@ -40,7 +40,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                     shadow-sm rounded group cursor-pointer overflow-hidden`
                   }
                 >
-                  <Item original={img} thumbnail={img} width='1000' height='600'>
+                  <Item original={img} thumbnail={img} width='1024' height='768'>
                   {({ ref, open }) => (
                     <Image
                       className="rounded-l group-hover:scale-105 object-cover transition"
