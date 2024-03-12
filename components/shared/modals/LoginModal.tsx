@@ -10,9 +10,12 @@ import Heading from "../Heading";
 import Button from "../Button";
 import Input from "../inputs/Input";
 import { ReduxStore } from "@/redux/store";
-import { ModalKey, setModal } from "@/redux/reducers/modal";
+import { ModalKey, setModal } from '@/redux/features/modals/modalSlice';
+import { useLoginMutation } from "@/redux/features/auth/authApiSlice";
+import { setCredentials } from "@/redux/features/auth/authSlice";
 
 const LoginModal = () => {
+  const [login, { isLoading }] = useLoginMutation()
   const dispatch = useDispatch();
   const { LoginModal, RegisterModal } = useSelector((state: ReduxStore) => state.modal);
   const {
@@ -26,6 +29,11 @@ const LoginModal = () => {
       password: '',
     }
   });
+
+  async function handleSubmit() {
+    const userData = await login({ email: 'moinul@gmail.com', password: '12345' }).unwrap();
+    setCredentials({ user: undefined, ...userData });
+  }
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -96,7 +104,7 @@ const LoginModal = () => {
   return (
     <Modal
       disabled={false}
-      onSubmit={() => {}}
+      onSubmit={handleSubmit}
       isOpen={LoginModal}
       title="Login"
       actionLabel="Continue"
