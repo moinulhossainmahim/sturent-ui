@@ -64,7 +64,6 @@ const CreatePropertyModal = () => {
   const location = watch('location');
   const roomCount = watch('roomCount');
   const bathroomCount = watch('bathroomCount');
-  const imageSrc = watch('imageSrc');
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
