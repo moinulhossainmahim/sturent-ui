@@ -11,7 +11,7 @@ import Institution from '../inputs/Institution';
 import Place from '../inputs/Place';
 import Heading from '../Heading';
 import { ReduxStore } from '@/redux/store';
-import { ModalKey, setModal } from '@/redux/reducers/modal';
+import { ModalKey, setModal } from '@/redux/features/modals/modalSlice';
 
 enum STEPS {
   GENDER = 0,

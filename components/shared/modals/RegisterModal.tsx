@@ -10,7 +10,7 @@ import Heading from "../Heading";
 import Input from "../inputs/Input";
 import Button from "../Button";
 import { ReduxStore } from "@/redux/store";
-import { ModalKey, setModal } from "@/redux/reducers/modal";
+import { ModalKey, setModal } from '@/redux/features/modals/modalSlice';
 
 const RegisterModal = () => {
   const dispatch = useDispatch();
