@@ -12,7 +12,7 @@ import ListingCard from "./ListingCard";
 import { Feature } from "@/types/Feature";
 import RoomFeature from "../RoomFeature";
 import { Card, CardHeader, CardTitle, CardDescription, CardFooter, CardContent } from "@/components/ui/card";
-import { ModalKey, setModal } from "@/redux/reducers/modal";
+import { ModalKey, setModal } from '@/redux/features/modals/modalSlice';
 
 interface ListingInfoProps {
   description?: string;

@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'next/navigation';
 import { BiSearch } from 'react-icons/bi';
 
-import { ModalKey, setModal } from '@/redux/reducers/modal';
+import { ModalKey, setModal } from '@/redux/features/modals/modalSlice';
 
 const Search = () => {
   const dispatch = useDispatch();

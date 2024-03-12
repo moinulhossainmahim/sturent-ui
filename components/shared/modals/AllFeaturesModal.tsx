@@ -3,7 +3,7 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import { ReduxStore } from "@/redux/store";
-import { ModalKey, setModal } from "@/redux/reducers/modal";
+import { ModalKey, setModal } from '@/redux/features/modals/modalSlice';
 import { features } from "../listings/ListingInfo";
 import Modal from "./Modal";
 

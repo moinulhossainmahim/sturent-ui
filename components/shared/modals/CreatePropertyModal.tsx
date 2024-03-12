@@ -18,7 +18,7 @@ import Input from '../inputs/Input';
 import { features } from '../listings/ListingInfo';
 import RoomFeature from '../RoomFeature';
 import { ReduxStore } from '@/redux/store';
-import { ModalKey, setModal } from '@/redux/reducers/modal';
+import { ModalKey, setModal } from '@/redux/features/modals/modalSlice';
 
 enum STEPS {
   CATEGORY = 0,

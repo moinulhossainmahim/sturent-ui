@@ -8,7 +8,7 @@ import Link from "next/link";
 
 import MenuItem from "./MenuItem";
 import { ReduxStore } from "@/redux/store";
-import { ModalKey, setModal } from "@/redux/reducers/modal";
+import { ModalKey, setModal } from '@/redux/features/modals/modalSlice';
 
 const UserMenu= () => {
   const dispatch = useDispatch();
