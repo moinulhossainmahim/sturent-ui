@@ -1,12 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { setCredentials, logOut, AuthStore } from '../../features/auth/authSlice'
+import { API_BASE_URL } from '@/constants'
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: 'http://localhost:3001',
+    baseUrl: API_BASE_URL,
     prepareHeaders: (headers, { getState }: any) => {
-        const token = getState().auth.token
-        if (token) {
-            headers.set("authorization", `Bearer ${token}`)
+        const token = getState().auth.accessToken
+        if (!headers.has('Authorization') && token) {
+            headers.set("Authorization", `Bearer ${token}`)
         }
         return headers
     }
@@ -15,23 +16,22 @@ const baseQuery = fetchBaseQuery({
 const baseQueryWithReauth = async (args: any, api: any, extraOptions: any) => {
     let result = await baseQuery(args, api, extraOptions)
 
-    if (result?.error?.status === 401) {
-        console.log('sending refresh token')
-        // send refresh token to get new access token
-        const refreshResult = await baseQuery('/refresh', api, extraOptions)
+    if (result?.error?.status === 403) {
+        const refreshToken = api.getState().auth.refreshToken;
+
+        const refreshResult = await baseQuery({ method: 'POST', url: '/auth/refresh', headers: {
+            "Authorization": `Bearer ${refreshToken}`,
+        }, }, api, extraOptions)
+
         const data = refreshResult.data as AuthStore;
-        console.log(refreshResult)
         if (refreshResult?.data) {
             const user = api.getState().auth.user;
-            // store the new token
-            api.dispatch(setCredentials({ accessToken: data.accessToken, refreshToken: data.refreshToken, user }))
-            // retry the original query with new access token
+            api.dispatch(setCredentials({ accessToken: data.accessToken, refreshToken: data.refreshToken, user, isAuthenticated: true }))
             result = await baseQuery(args, api, extraOptions)
         } else {
             api.dispatch(logOut())
         }
     }
-
     return result
 }
 
