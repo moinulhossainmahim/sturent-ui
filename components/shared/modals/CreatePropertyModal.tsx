@@ -19,6 +19,9 @@ import { features } from '../listings/ListingInfo';
 import RoomFeature from '../RoomFeature';
 import { ReduxStore } from '@/redux/store';
 import { ModalKey, setModal } from '@/redux/features/modals/modalSlice';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectLabel, SelectItem } from '@/components/ui/select';
+import { institutionList } from '../inputs/Institution';
+import University from '../University';
 
 enum STEPS {
   CATEGORY = 0,
@@ -26,18 +29,22 @@ enum STEPS {
   FEATURE=2,
   IMAGES = 3,
   DESCRIPTION = 4,
-  PRICE = 5,
+  PLACE = 5,
+  INSTITUTION = 6,
+  PRICE = 7,
 }
 
 const CreatePropertyModal = () => {
   const dispatch = useDispatch();
   const isOpen = useSelector((state: ReduxStore) => state.modal.CreatePropertyModal);
   const [selectedFeatures, setSelectedFeatures] = useState<number[]>([]);
+  const [selectedInstitutions, setSelectedInstitutions] = useState<number[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
   const [step, setStep] = useState(STEPS.CATEGORY);
 
   const {
+    control,
     register,
     handleSubmit,
     setValue,
@@ -49,21 +56,24 @@ const CreatePropertyModal = () => {
   } = useForm<FieldValues>({
     defaultValues: {
       category: '',
-      location: null,
       roomCount: 1,
       bathroomCount: 1,
-      imageSrc: '',
       price: 1,
       title: '',
       description: '',
       sqft: 0,
+      city: '',
+      area: '',
+      sector: '',
+      road: '',
+      house: '',
     }
   });
 
   const category = watch('category');
-  const location = watch('location');
   const roomCount = watch('roomCount');
   const bathroomCount = watch('bathroomCount');
+  const area = watch('area');
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -83,6 +93,16 @@ const CreatePropertyModal = () => {
     }
   };
 
+  const toggleUniversity = (universityId: number) => {
+    if (selectedInstitutions.includes(universityId)) {
+      setSelectedInstitutions((prevSelected) =>
+        prevSelected.filter((id) => id !== universityId)
+      );
+    } else {
+      setSelectedInstitutions((prevSelected) => [...prevSelected, universityId]);
+    }
+  };
+
   const onBack = () => {
     setStep((value) => value - 1);
   }
@@ -92,6 +112,11 @@ const CreatePropertyModal = () => {
   }
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    data["features"] = selectedFeatures;
+    data["images"] = uploadedFiles;
+    data["universities"] = selectedInstitutions;
+    console.log(data);
+    // reset();
     if (step !== STEPS.PRICE) {
       return onNext();
     }
@@ -192,7 +217,7 @@ const CreatePropertyModal = () => {
         />
         <hr />
         <Input
-          id="Square-feet"
+          id="sqft"
           label="Square Feet"
           disabled={false}
           register={register}
@@ -212,6 +237,84 @@ const CreatePropertyModal = () => {
           subtitle="Show guests what your place looks like!"
         />
         <ImageUpload uploadedFiles={uploadedFiles} setUploadedFiles={setUploadedFiles} />
+      </div>
+    )
+  }
+
+  if (step === STEPS.PLACE) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Select Location"
+          subtitle="Select location which is nears to your place"
+        />
+        <div className='w-full'>
+          <Select value={area} onValueChange={(value) => setCustomValue('area', value)}>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select an area" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectLabel>Area</SelectLabel>
+                <SelectItem value="uttara">Uttara</SelectItem>
+                <SelectItem value="gulshan">Gulshan</SelectItem>
+                <SelectItem value="banani">Banani</SelectItem>
+                <SelectItem value="dhanmondi">Dhanmondi</SelectItem>
+                <SelectItem value="mirpur">Mirpur</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+        <Input
+          id="city"
+          label="City"
+          disabled={false}
+          register={register}
+          errors={errors}
+          required
+        />
+        <Input
+          id="sector"
+          label="Sector / Block"
+          disabled={false}
+          register={register}
+          errors={errors}
+          required
+        />
+        <Input
+          id="road"
+          label="Road No."
+          disabled={false}
+          register={register}
+          errors={errors}
+          required
+        />
+        <Input
+          id="house"
+          label="House No."
+          disabled={false}
+          register={register}
+          errors={errors}
+          required
+        />
+      </div>
+    )
+  }
+
+  if (step === STEPS.INSTITUTION) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Universities"
+          subtitle="Select universities near your place"
+        />
+        <div className="w-full flex justify-center">
+        <div className="px-8 w-[80%] flex flex-col gap-4 text-center max-h-[400px] overflow-y-auto">
+          {institutionList.map((university) => (
+            <University key={university.id} university={university} toggleUniversity={toggleUniversity} selectedUniversity={selectedInstitutions} />
+          ))}
+          </div>
+        </div>
       </div>
     )
   }
@@ -266,17 +369,19 @@ const CreatePropertyModal = () => {
   }
 
   return (
-    <Modal
-      disabled={isLoading}
-      isOpen={isOpen}
-      title="stuRENT your home!"
-      actionLabel={actionLabel}
-      onSubmit={handleSubmit(onSubmit)}
-      secondaryActionLabel={secondaryActionLabel}
-      secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
-      onClose={() => dispatch(setModal({ key: ModalKey.CreatePropertyModal, value: false }))}
-      body={bodyContent}
-    />
+    <>
+      <Modal
+        disabled={isLoading}
+        isOpen={isOpen}
+        title="stuRENT your home!"
+        actionLabel={actionLabel}
+        onSubmit={handleSubmit(onSubmit)}
+        secondaryActionLabel={secondaryActionLabel}
+        secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
+        onClose={() => dispatch(setModal({ key: ModalKey.CreatePropertyModal, value: false }))}
+        body={bodyContent}
+        />
+    </>
   );
 }
 
