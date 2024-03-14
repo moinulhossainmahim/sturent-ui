@@ -1,11 +1,16 @@
 import CategoryInput from "./CategoryInput";
 
+export type University = {
+  id: number,
+  name: string,
+};
+
 interface InstitutionProps {
   institution: string;
   setInstitution: Function;
 }
 
-const institutionList = [
+export const institutionList: University[] = [
   {
     id: 1,
     name: 'Brac University',
