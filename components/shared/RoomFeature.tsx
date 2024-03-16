@@ -1,7 +1,7 @@
-import { Feature } from "@/types/Feature";
+import { IFeature } from "@/types/Feature";
 
 interface RoomFeatureProps {
-  feature: Feature;
+  feature: IFeature;
   toggleFeature: (featureId: number) => void;
   selectedFeatures?: number[]
 }
