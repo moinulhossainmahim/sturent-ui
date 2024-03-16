@@ -1,11 +1,9 @@
-import { API_BASE_URL } from "@/constants";
-import { ICreatePropertyFormData, IProperty } from "@/types/Properties";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { IProperty } from "@/types/Properties";
+import { apiSlice } from "../api";
 
-export const propertiesApiSlice = createApi({
-  reducerPath: 'properties',
-  baseQuery: fetchBaseQuery({ baseUrl: API_BASE_URL }),
-  tagTypes: ['Properties'],
+const apiSliceWithTag = apiSlice.enhanceEndpoints({ addTagTypes: ['Properties', 'UserProperties']});
+
+export const propertiesApiSlice = apiSliceWithTag.injectEndpoints({
   endpoints: (builder) => ({
     getAllProperties: builder.query<IProperty[], void>({
       query: () => '/properties/all',
@@ -23,9 +21,29 @@ export const propertiesApiSlice = createApi({
           },
         }
       },
-      invalidatesTags: [{ type: 'Properties', id: 'LIST' }],
+      invalidatesTags: [{ type: 'Properties', id: 'LIST' }, { type: 'UserProperties', id: 'LIST' }],
+    }),
+
+    getUserAllProperties: builder.query<IProperty[], void>({
+      query: () => '/properties',
+      providesTags: [{ type: 'UserProperties', id: 'LIST' }],
+    }),
+
+    removeUserProperty: builder.mutation({
+      query: (propertyId: number) => {
+        return {
+          url: `/properties/${propertyId}`,
+          method: 'DELETE',
+        }
+      },
+      invalidatesTags: [{ type: 'UserProperties', id: 'LIST' }, { type: 'Properties', id: 'LIST' }],
     })
   })
-});
+})
 
-export const { useGetAllPropertiesQuery, useCreatePropertyMutation } = propertiesApiSlice;
+export const {
+  useGetAllPropertiesQuery,
+  useCreatePropertyMutation,
+  useGetUserAllPropertiesQuery,
+  useRemoveUserPropertyMutation
+} = propertiesApiSlice;
