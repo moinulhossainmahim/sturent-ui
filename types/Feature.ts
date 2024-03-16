@@ -1,6 +1,6 @@
 import { IconType } from "react-icons"
 
-export type Feature = {
+export type IFeature = {
   id: number,
   icon: IconType,
   name: string,
