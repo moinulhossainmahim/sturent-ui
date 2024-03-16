@@ -22,6 +22,7 @@ import { ModalKey, setModal } from '@/redux/features/modals/modalSlice';
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectLabel, SelectItem } from '@/components/ui/select';
 import { institutionList } from '../inputs/Institution';
 import University from '../University';
+import { useCreatePropertyMutation } from '@/redux/features/properties/propertiesApiSlice';
 
 enum STEPS {
   CATEGORY = 0,
@@ -37,6 +38,7 @@ enum STEPS {
 const CreatePropertyModal = () => {
   const dispatch = useDispatch();
   const isOpen = useSelector((state: ReduxStore) => state.modal.CreatePropertyModal);
+  const [createProperty] = useCreatePropertyMutation();
   const [selectedFeatures, setSelectedFeatures] = useState<number[]>([]);
   const [selectedInstitutions, setSelectedInstitutions] = useState<number[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -44,7 +46,6 @@ const CreatePropertyModal = () => {
   const [step, setStep] = useState(STEPS.CATEGORY);
 
   const {
-    control,
     register,
     handleSubmit,
     setValue,
@@ -58,15 +59,14 @@ const CreatePropertyModal = () => {
       category: '',
       roomCount: 1,
       bathroomCount: 1,
-      price: 1,
+      price: NaN,
       title: '',
       description: '',
-      sqft: 0,
-      city: '',
+      sqft: NaN,
       area: '',
-      sector: '',
-      road: '',
-      house: '',
+      sector: NaN,
+      road: NaN,
+      house: NaN,
     }
   });
 
@@ -74,6 +74,16 @@ const CreatePropertyModal = () => {
   const roomCount = watch('roomCount');
   const bathroomCount = watch('bathroomCount');
   const area = watch('area');
+  const price = watch('price');
+
+  function isDisabled() {
+    if (step === STEPS.CATEGORY && category === '') return true;
+    if (step === STEPS.FEATURE && !selectedFeatures.length) return true;
+    if (step === STEPS.IMAGES && !uploadedFiles.length) return true;
+    if (step === STEPS.INSTITUTION && !selectedInstitutions.length) return true;
+    if (step === STEPS.PLACE && !area) return true;
+    if (step === STEPS.PRICE && !price) return true;
+  }
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -111,15 +121,27 @@ const CreatePropertyModal = () => {
     setStep((value) => value + 1);
   }
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    data["features"] = selectedFeatures;
-    data["images"] = uploadedFiles;
-    data["universities"] = selectedInstitutions;
-    console.log(data);
-    // reset();
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (step !== STEPS.PRICE) {
       return onNext();
     }
+
+    data["features"] = selectedFeatures;
+    data["images"] = uploadedFiles;
+    data["universities"] = selectedInstitutions;
+    const formData = new FormData();
+
+    Object.entries(data).forEach(([key, value]) => {
+        if (key !== 'images') {
+            formData.append(key, String(value));
+        }
+    });
+
+    data.images.forEach((image: string | Blob) => {
+        formData.append(`images`, image);
+    });
+    const createPropertyResult = await createProperty(formData).unwrap();
+    console.log(createPropertyResult);
   }
 
   const actionLabel = useMemo(() => {
@@ -266,19 +288,12 @@ const CreatePropertyModal = () => {
           </Select>
         </div>
         <Input
-          id="city"
-          label="City"
-          disabled={false}
-          register={register}
-          errors={errors}
-          required
-        />
-        <Input
           id="sector"
           label="Sector / Block"
           disabled={false}
           register={register}
           errors={errors}
+          type='number'
           required
         />
         <Input
@@ -287,6 +302,7 @@ const CreatePropertyModal = () => {
           disabled={false}
           register={register}
           errors={errors}
+          type='number'
           required
         />
         <Input
@@ -295,6 +311,7 @@ const CreatePropertyModal = () => {
           disabled={false}
           register={register}
           errors={errors}
+          type='number'
           required
         />
       </div>
@@ -372,6 +389,7 @@ const CreatePropertyModal = () => {
     <>
       <Modal
         disabled={isLoading}
+        nextDisabled={isDisabled()}
         isOpen={isOpen}
         title="stuRENT your home!"
         actionLabel={actionLabel}
