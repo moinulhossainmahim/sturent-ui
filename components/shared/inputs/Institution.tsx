@@ -3,6 +3,7 @@ import CategoryInput from "./CategoryInput";
 export type University = {
   id: number,
   name: string,
+  slug: string,
 };
 
 interface InstitutionProps {
@@ -14,22 +15,27 @@ export const institutionList: University[] = [
   {
     id: 1,
     name: 'Brac University',
+    slug: 'brac-university',
   },
   {
     id: 2,
     name: 'North South University',
+    slug: 'north-south-university',
   },
   {
     id: 3,
     name: 'Northern University',
+    slug: 'northern-university',
   },
   {
     id: 4,
     name: 'American International University',
+    slug: 'american-international-university',
   },
   {
     id: 5,
     name: 'Independent University',
+    slug: 'independent-university',
   },
 ]
 
@@ -42,6 +48,7 @@ const Institution = ({ institution, setInstitution } : InstitutionProps) => {
             onClick={() => setInstitution(institute.name)}
             selected={institute.name === institution}
             label={institute.name}
+            slug={institute.slug}
             key={institute.id}
           />
         ))}
