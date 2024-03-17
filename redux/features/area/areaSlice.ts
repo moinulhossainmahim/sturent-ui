@@ -13,8 +13,8 @@ const initialState: AreaStore = {
   message: '',
 }
 
-const areaSlice = createSlice({
-  name: 'area',
+const areasSlice = createSlice({
+  name: 'areas',
   initialState,
   reducers: {
     setAreas: (state, action: PayloadAction<AreaStore>) => {
@@ -25,6 +25,6 @@ const areaSlice = createSlice({
   },
 });
 
-export const { setAreas } = areaSlice.actions;
+export const { setAreas } = areasSlice.actions;
 
-export default areaSlice.reducer;
+export default areasSlice.reducer;
