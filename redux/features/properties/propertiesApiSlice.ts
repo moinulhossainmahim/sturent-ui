@@ -37,13 +37,18 @@ export const propertiesApiSlice = apiSliceWithTag.injectEndpoints({
         }
       },
       invalidatesTags: [{ type: 'UserProperties', id: 'LIST' }, { type: 'Properties', id: 'LIST' }],
+    }),
+
+    getSingleProperty: builder.query({
+      query: (propertyId: number) => `/properties/${propertyId}`,
     })
   })
 })
 
 export const {
   useGetAllPropertiesQuery,
-  useCreatePropertyMutation,
+  useGetSinglePropertyQuery,
   useGetUserAllPropertiesQuery,
-  useRemoveUserPropertyMutation
+  useCreatePropertyMutation,
+  useRemoveUserPropertyMutation,
 } = propertiesApiSlice;
