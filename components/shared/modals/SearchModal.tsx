@@ -12,6 +12,7 @@ import Place from '../inputs/Place';
 import Heading from '../Heading';
 import { ReduxStore } from '@/redux/store';
 import { ModalKey, setModal } from '@/redux/features/modals/modalSlice';
+import { useGetAllPropertiesQuery } from '@/redux/features/properties/propertiesApiSlice';
 
 enum STEPS {
   GENDER = 0,
@@ -22,8 +23,9 @@ enum STEPS {
 const SearchModal = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  const searchModal = useSelector((state: ReduxStore) => state.modal.SearchModal);
   const params = useSearchParams();
+  const searchModal = useSelector((state: ReduxStore) => state.modal.SearchModal);
+  const { data, isLoading, refetch } = useGetAllPropertiesQuery(qs.parse(params.toString()), { skip: params ? false : true });
 
   const [step, setStep] = useState(STEPS.GENDER);
 
@@ -52,8 +54,8 @@ const SearchModal = () => {
 
     const updatedQuery: any = {
       ...currentQuery,
-      locationValue: location,
-      institution,
+      area: location,
+      university: institution,
       gender,
     };
 
@@ -61,7 +63,8 @@ const SearchModal = () => {
       url: '/',
       query: updatedQuery,
     }, { skipNull: true });
-
+    console.log(data);
+    refetch();
     setStep(STEPS.LOCATION);
     dispatch(setModal({ key: ModalKey.SearchModal, value: false }));
     router.push(url);
