@@ -12,8 +12,8 @@ const Search = () => {
   const params = useSearchParams();
 
   const  genderValue = params?.get('gender');
-  const  university = params?.get('institution');
-  const  location = params?.get('locationValue');
+  const  university = params?.get('university');
+  const  location = params?.get('area');
 
   const genderLabel = useMemo(() => {
     if (genderValue) {
