@@ -9,7 +9,7 @@ import { BiSolidCctv } from "react-icons/bi";
 
 import { Button } from "@/components/ui/button";
 import ListingCard from "./ListingCard";
-import { Feature } from "@/types/Feature";
+import { IFeature } from "@/types/Feature";
 import RoomFeature from "../RoomFeature";
 import { Card, CardHeader, CardTitle, CardDescription, CardFooter, CardContent } from "@/components/ui/card";
 import { ModalKey, setModal } from '@/redux/features/modals/modalSlice';
@@ -70,7 +70,7 @@ const newListings = [
   },
 ]
 
-export const features: Feature[] = [
+export const features: IFeature[] = [
   {
     id: 1,
     icon: MdOutlineBalcony,
