@@ -8,23 +8,28 @@ interface PlaceProps {
 const placeList = [
   {
     id: 1,
-    name: 'Uttara, Dhaka',
+    name: 'Uttara',
+    city: 'Dhaka'
   },
   {
     id: 2,
-    name: 'Badda, Dhaka',
+    name: 'Badda',
+    city: 'Dhaka'
   },
   {
     id: 3,
-    name: 'Banani, Dhaka',
+    name: 'Banani',
+    city: 'Dhaka'
   },
   {
     id: 4,
-    name: 'Gulshan, Dhaka',
+    name: 'Gulshan',
+    city: 'Dhaka'
   },
   {
     id: 5,
-    name: 'Dhanmodi, Dhaka',
+    name: 'Dhanmodi',
+    city: 'Dhaka'
   },
 ]
 
@@ -35,8 +40,8 @@ const Place = ({ place, setplace } : PlaceProps) => {
         {placeList.map((item) => (
           <CategoryInput
             label={item.name}
-            onClick={() => setplace(item.name)}
-            selected={item.name === place}
+            onClick={() => setplace(item.name.toLowerCase())}
+            selected={item.name.toLowerCase() === place}
             key={item.id}
           />
         ))}
