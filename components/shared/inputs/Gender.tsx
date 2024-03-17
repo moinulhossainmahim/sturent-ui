@@ -26,9 +26,9 @@ const Gender = ({ gender, setGender } : GenderProps) => {
       <div className="w-[60%] flex flex-col gap-3 text-center">
         {genderList.map((item) => (
           <CategoryInput
-            onClick={() => setGender(item.name)}
+            onClick={() => setGender(item.name.toLowerCase())}
             label={item.name}
-            selected={item.name === gender}
+            selected={item.name.toLowerCase() === gender}
             key={item.id}
           />
         ))}
