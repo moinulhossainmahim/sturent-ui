@@ -45,10 +45,9 @@ const Institution = ({ institution, setInstitution } : InstitutionProps) => {
       <div className="w-[60%] flex flex-col gap-2 text-center max-h-[350px] overflow-y-auto">
         {institutionList.map((institute) => (
           <CategoryInput
-            onClick={() => setInstitution(institute.name)}
-            selected={institute.name === institution}
+            onClick={() => setInstitution(institute.slug)}
+            selected={institute.slug === institution}
             label={institute.name}
-            slug={institute.slug}
             key={institute.id}
           />
         ))}
