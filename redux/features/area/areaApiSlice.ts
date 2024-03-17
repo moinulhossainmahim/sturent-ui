@@ -3,7 +3,7 @@ import { Area } from "@/types/Area";
 
 const apiSliceWithTag = apiSlice.enhanceEndpoints({ addTagTypes: ['Areas']});
 
-export const propertiesApiSlice = apiSliceWithTag.injectEndpoints({
+export const areaApiSlice = apiSliceWithTag.injectEndpoints({
   endpoints: (builder) => ({
     getAllFeatures: builder.query<Area[], void>({
       query: () => '/areas',
@@ -12,4 +12,4 @@ export const propertiesApiSlice = apiSliceWithTag.injectEndpoints({
   })
 });
 
-export const { useGetAllFeaturesQuery } = propertiesApiSlice;
+export const { useGetAllFeaturesQuery } = areaApiSlice;
