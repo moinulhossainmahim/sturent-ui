@@ -3,7 +3,7 @@ import { apiSlice } from "../api";
 
 const apiSliceWithTag = apiSlice.enhanceEndpoints({ addTagTypes: ['Features']});
 
-export const propertiesApiSlice = apiSliceWithTag.injectEndpoints({
+export const roomFeaturesApiSlice = apiSliceWithTag.injectEndpoints({
   endpoints: (builder) => ({
     getAllFeatures: builder.query<IFeature[], void>({
       query: () => '/features',
@@ -12,4 +12,4 @@ export const propertiesApiSlice = apiSliceWithTag.injectEndpoints({
   })
 });
 
-export const { useGetAllFeaturesQuery } = propertiesApiSlice;
+export const { useGetAllFeaturesQuery } = roomFeaturesApiSlice;
