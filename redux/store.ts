@@ -7,6 +7,7 @@ import propertyReducer, { PropertyStore } from './features/properties/properties
 import userPropertyReducer, { UserPropertiesStore } from './features/properties/userPropertiesSlice';
 import favoriteReducer, { FavoriteStore } from './features/favorites/favoritesSlice';
 import singlePropertyReducer, { SinglePropertyStore } from './features/properties/singlePropetySlice';
+import roomFeaturesReducer, { RoomFeatureStore } from './features/room-features/roomFeaturesSlice';
 
 export interface ReduxStore {
   modal: ModalStore;
@@ -15,6 +16,7 @@ export interface ReduxStore {
   userProperties: UserPropertiesStore;
   favorites: FavoriteStore;
   singlePropertyStore: SinglePropertyStore;
+  roomFeatures: RoomFeatureStore;
 };
 
 const store = configureStore({
@@ -24,7 +26,8 @@ const store = configureStore({
     properties: propertyReducer,
     userProperties: userPropertyReducer,
     favorites: favoriteReducer,
-    singlePropertyReducer: singlePropertyReducer,
+    singleProperty: singlePropertyReducer,
+    roomFeatures: roomFeaturesReducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
