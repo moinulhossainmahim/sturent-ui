@@ -55,7 +55,7 @@ const Categories = () => {
             key={item.label}
             label={item.label}
             icon={item.icon}
-            selected={category === item.label}
+            selected={category === item.label.toLowerCase()}
           />
         ))}
       </div>
