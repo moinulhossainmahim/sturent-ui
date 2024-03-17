@@ -1,12 +1,15 @@
 import { IProperty } from "@/types/Properties";
 import { apiSlice } from "../api";
+import { IFilterAndPagination } from "@/types/filterAndPagination";
 
 const apiSliceWithTag = apiSlice.enhanceEndpoints({ addTagTypes: ['Properties', 'UserProperties']});
 
 export const propertiesApiSlice = apiSliceWithTag.injectEndpoints({
   endpoints: (builder) => ({
-    getAllProperties: builder.query<IProperty[], void>({
-      query: () => '/properties/all',
+    getAllProperties: builder.query<IProperty[], Partial<IFilterAndPagination>>({
+      query: ({ page, gender, university, area }: Partial<IFilterAndPagination>) => ({
+        url: `/properties/all?${page ? `page=${page}` : `page=1`}${gender ? `&gender=${gender}` : ''}${university ? `&university=${university}` : ''}${area ? `&area=${area}` : ''}`
+      }),
       providesTags: [{ type: 'Properties', id: 'LIST' }],
     }),
 
