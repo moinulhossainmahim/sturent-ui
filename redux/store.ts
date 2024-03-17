@@ -9,6 +9,7 @@ import favoriteReducer, { FavoriteStore } from './features/favorites/favoritesSl
 import singlePropertyReducer, { SinglePropertyStore } from './features/properties/singlePropetySlice';
 import roomFeaturesReducer, { RoomFeatureStore } from './features/room-features/roomFeaturesSlice';
 import areaReducer, { AreaStore } from './features/area/areaSlice';
+import universityReducer, { UniversityStore } from './features/university/universitySlice';
 
 export interface ReduxStore {
   modal: ModalStore;
@@ -19,6 +20,7 @@ export interface ReduxStore {
   singlePropertyStore: SinglePropertyStore;
   roomFeatures: RoomFeatureStore;
   areas: AreaStore;
+  universities: UniversityStore;
 };
 
 const store = configureStore({
@@ -31,6 +33,7 @@ const store = configureStore({
     singleProperty: singlePropertyReducer,
     roomFeatures: roomFeaturesReducer,
     areas: areaReducer,
+    universities: universityReducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
