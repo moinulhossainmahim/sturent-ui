@@ -13,11 +13,11 @@ const initialState: RoomFeatureStore = {
   message: '',
 }
 
-const propertiesSlice = createSlice({
+const roomFeaturesSlice = createSlice({
   name: 'roomFeatures',
   initialState,
   reducers: {
-    fetchAllRoomFeatures: (state, action: PayloadAction<RoomFeatureStore>) => {
+    setRoomFeatures: (state, action: PayloadAction<RoomFeatureStore>) => {
       state.data = action.payload.data;
       state.message = action.payload.message;
       state.success = action.payload.success;
@@ -25,6 +25,6 @@ const propertiesSlice = createSlice({
   },
 });
 
-export const { fetchAllRoomFeatures } = propertiesSlice.actions;
+export const { setRoomFeatures } = roomFeaturesSlice.actions;
 
-export default propertiesSlice.reducer;
+export default roomFeaturesSlice.reducer;
