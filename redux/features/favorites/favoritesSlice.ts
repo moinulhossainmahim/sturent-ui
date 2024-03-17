@@ -1,13 +1,13 @@
 import { IProperty } from "@/types/Properties";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-export interface IFavoriteStore {
+export interface FavoriteStore {
   data: IProperty[];
   success: boolean;
   message: string;
 };
 
-const initialState: IFavoriteStore = {
+const initialState: FavoriteStore = {
   data: [],
   success: false,
   message: '',
@@ -17,7 +17,7 @@ const favoritesSlice = createSlice({
   name: 'favorites',
   initialState,
   reducers: {
-    fetchAllFavorites: (state, action: PayloadAction<IFavoriteStore>) => {
+    fetchAllFavorites: (state, action: PayloadAction<FavoriteStore>) => {
       state.data = action.payload.data;
       state.message = action.payload.message;
       state.success = action.payload.success;
