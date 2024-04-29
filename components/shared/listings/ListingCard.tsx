@@ -8,6 +8,7 @@ import { IoLocation } from "react-icons/io5";
 import HeartButton from "../HeartButton";
 import { IListing } from "@/types";
 import ConfirmationModal from "../modals/ConfirmationModal";
+import { useRemoveUserPropertyMutation } from "@/redux/features/properties/propertiesApiSlice";
 
 interface ListingCardProps {
   data: IListing;
@@ -25,6 +26,8 @@ const ListingCard: React.FC<ListingCardProps> = ({
   actionId = '',
 }) => {
   const router = useRouter();
+  const [deleteProperty, deletePropertyResult] = useRemoveUserPropertyMutation();
+
   const handleCancel = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -34,6 +37,18 @@ const ListingCard: React.FC<ListingCardProps> = ({
     }
     onAction?.(actionId)
   }, [disabled, onAction, actionId]);
+
+  const handleDelete = () => {
+    deleteProperty(data.id);
+  };
+
+  const primaryAction = () => {
+    handleDelete();
+  }
+
+  const secondaryAction = () => {
+    console.log('No');
+  }
 
   return (
     <div
@@ -80,7 +95,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
           </div>
         </div>
         {onAction && actionLabel && (
-          <ConfirmationModal onClick={() => {}} action='Delete Properties' />
+          <ConfirmationModal primaryAction={primaryAction} secondaryAction={secondaryAction}  action='Delete Properties' />
         )}
       </div>
     </div>

@@ -12,12 +12,14 @@ import { Button } from "@/components/ui/button"
 
 interface ConfirmationModalProps {
   action: string;
-  onClick: () => void;
+  primaryAction: () => void;
+  secondaryAction: () => void;
 }
 
 const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
   action,
-  onClick,
+  primaryAction,
+  secondaryAction,
 }) => {
   return (
     <AlertDialog>
@@ -31,8 +33,8 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
           </AlertDialogTitle>
         </AlertDialogHeader>
         <AlertDialogFooter className="w-full">
-          <AlertDialogCancel className="w-1/2">No</AlertDialogCancel>
-          <AlertDialogAction className="w-1/2">Yes</AlertDialogAction>
+          <AlertDialogCancel className="w-1/2" onClick={secondaryAction}>No</AlertDialogCancel>
+          <AlertDialogAction className="w-1/2" onClick={primaryAction}>Yes</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

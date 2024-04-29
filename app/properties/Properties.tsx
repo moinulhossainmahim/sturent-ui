@@ -3,9 +3,12 @@
 import Container from "@/components/shared/Container";
 import Heading from "@/components/shared/Heading";
 import ListingCard from "@/components/shared/listings/ListingCard";
+import { useGetUserAllPropertiesQuery } from "@/redux/features/properties/propertiesApiSlice";
 import { properties } from "@/test-data/properties";
 
 const Properties = () => {
+  const { data, isFetching } = useGetUserAllPropertiesQuery();
+
   return (
     <Container>
       <div className="py-8">
