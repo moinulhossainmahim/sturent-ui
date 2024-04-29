@@ -6,19 +6,36 @@ import { Gallery, Item } from 'react-photoswipe-gallery';
 
 import 'photoswipe/dist/photoswipe.css'
 
-import { IListing } from "@/types";
 import Container from "@/components/shared/Container";
 import ListingInfo from "@/components/shared/listings/ListingInfo";
 import Heading from "@/components/shared/Heading";
 import { Button } from "@/components/ui/button";
+import { listings } from "@/test-data/listings";
+import { useGetSinglePropertyQuery } from "@/redux/features/properties/propertiesApiSlice";
 
 interface ListingClientProps {
-  listing: IListing;
+  id: number;
 }
 
 const ListingClient: React.FC<ListingClientProps> = ({
-  listing,
+  id,
 }) => {
+
+  const listing = listings.find((listing) => listing.id == id) || {
+    id: 2,
+    title: '',
+    description: '',
+    featuredImg: '',
+    galleryImg: [],
+    roomCount: 2,
+    bathroomCount: 1,
+    guestCount: 4,
+    price: 150,
+    location: '',
+    isSaved: false,
+  };
+  const { data, isFetching } = useGetSinglePropertyQuery(id);
+
   return (
     <Container>
       <div className="max-w-[90%] md:max-w-[80%] m-auto pt-[120px]">
