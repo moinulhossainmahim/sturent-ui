@@ -63,8 +63,6 @@ const SearchModal = () => {
       url: '/',
       query: updatedQuery,
     }, { skipNull: true });
-    console.log(data);
-    refetch();
     setStep(STEPS.LOCATION);
     dispatch(setModal({ key: ModalKey.SearchModal, value: false }));
     router.push(url);
