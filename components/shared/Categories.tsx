@@ -1,5 +1,6 @@
 'use client';
 
+import qs from 'query-string';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { FaSlideshare } from 'react-icons/fa';
 import { MdBedroomChild } from 'react-icons/md';
@@ -8,6 +9,7 @@ import { IoHome } from "react-icons/io5";
 import CategoryBox from './CategoryBox';
 import Container from './Container';
 import { ICategory } from '@/types';
+import { useGetAllPropertiesQuery } from '@/redux/features/properties/propertiesApiSlice';
 
 export const categories: ICategory[] = [
   {
@@ -30,6 +32,7 @@ export const categories: ICategory[] = [
 const Categories = () => {
   const params = useSearchParams();
   const category = params?.get('category');
+  const { data, isLoading } = useGetAllPropertiesQuery(qs.parse(params.toString()), { skip: params ? false : true });
   const pathname = usePathname();
   const isMainPage = pathname === '/';
 
