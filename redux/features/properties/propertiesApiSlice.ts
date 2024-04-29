@@ -7,8 +7,8 @@ const apiSliceWithTag = apiSlice.enhanceEndpoints({ addTagTypes: ['Properties', 
 export const propertiesApiSlice = apiSliceWithTag.injectEndpoints({
   endpoints: (builder) => ({
     getAllProperties: builder.query<IProperty[], Partial<IFilterAndPagination>>({
-      query: ({ page, gender, university, area }: Partial<IFilterAndPagination>) => ({
-        url: `/properties/all?${page ? `page=${page}` : `page=1`}${gender ? `&gender=${gender}` : ''}${university ? `&university=${university}` : ''}${area ? `&area=${area}` : ''}`
+      query: ({ page, gender, university, area, category }: Partial<IFilterAndPagination>) => ({
+        url: `/properties/all?${page ? `page=${page}` : `page=1`}${gender ? `&gender=${gender}` : ''}${university ? `&university=${university}` : ''}${area ? `&area=${area}` : ''}${category ? `&category=${category}` : ''}`
       }),
       providesTags: [{ type: 'Properties', id: 'LIST' }],
     }),
