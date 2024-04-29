@@ -1,9 +1,14 @@
+'use client';
+
 import Heading from "@/components/shared/Heading";
 import ListingCard from "@/components/shared/listings/ListingCard";
+import { useGetAllFavoritesQuery } from "@/redux/features/favorites/favoritesApiSlice";
 import { favoriteListings } from "@/test-data/favorite-listings";
 import { IListing } from "@/types";
 
 const Favorites = () => {
+  const { data, isFetching } = useGetAllFavoritesQuery();
+
   return (
     <div className="py-8">
       <Heading
