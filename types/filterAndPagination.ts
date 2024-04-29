@@ -3,4 +3,5 @@ export interface IFilterAndPagination {
   gender: string;
   university: string;
   area: string;
+  category: string;
 };
