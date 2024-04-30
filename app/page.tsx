@@ -3,7 +3,6 @@
 import Container from "@/components/shared/Container";
 import ListingCard from "@/components/shared/listings/ListingCard";
 import { SkeletonLoader } from "@/components/shared/loader/SkeletonLoader";
-import { useGetListingsQuery } from "@/redux/features/listings";
 import { listings, testListings } from "@/test-data/listings";
 
 export default function Home() {
