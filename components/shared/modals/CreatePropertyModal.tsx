@@ -23,6 +23,9 @@ import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectL
 import { institutionList } from '../inputs/Institution';
 import University from '../University';
 import { useCreatePropertyMutation } from '@/redux/features/properties/propertiesApiSlice';
+import { useGetAllAreasQuery } from '@/redux/features/area/areaApiSlice';
+import { useGetAllFeaturesQuery } from '@/redux/features/room-features/roomFeaturesApiSlice';
+import { useGetAllUniversityQuery } from '@/redux/features/university/universityApiSlice';
 
 enum STEPS {
   CATEGORY = 0,
@@ -38,7 +41,10 @@ enum STEPS {
 const CreatePropertyModal = () => {
   const dispatch = useDispatch();
   const isOpen = useSelector((state: ReduxStore) => state.modal.CreatePropertyModal);
-  const [createProperty] = useCreatePropertyMutation();
+  const [createProperty, createPropertyResult] = useCreatePropertyMutation();
+  const { data, isFetching } = useGetAllAreasQuery();
+  const { data: featuresData, isFetching: isFetchingFeaturesData } = useGetAllFeaturesQuery();
+  const { data: universitiesData, isFetching: isFetchingUniversitiesData } = useGetAllUniversityQuery();
   const [selectedFeatures, setSelectedFeatures] = useState<number[]>([]);
   const [selectedInstitutions, setSelectedInstitutions] = useState<number[]>([]);
   const [isLoading, setIsLoading] = useState(false);
