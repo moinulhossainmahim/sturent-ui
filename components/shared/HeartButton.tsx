@@ -5,6 +5,7 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { toast } from "react-toastify";
 
 import { listings } from "@/test-data/listings";
+import { useAddToFavoriteMutation, useRemoveFromFavoriteMutation } from "@/redux/features/favorites/favoritesApiSlice";
 
 interface HeartButtonProps {
   listingId: number
@@ -14,11 +15,19 @@ const HeartButton: React.FC<HeartButtonProps> = ({
   listingId,
 }) => {
   const [newListings, setNewListings] = useState(listings);
+  const [addToFavorites, addToFavoritesResult] = useAddToFavoriteMutation();
+  const [removeFromFavorites, removeFromFavoritesResult] = useRemoveFromFavoriteMutation();
   const listing = newListings.find((listing) => listing.id === listingId);
 
   const toggleFavourite = (listingId: number) => {
-    if (listing?.isSaved) toast.success('Removed from wishlist', { autoClose: 1000 });
-    else toast.success('Added to wishlist', { autoClose: 1000 });
+    if (listing?.isSaved) {
+      removeFromFavorites(listingId);
+      toast.success('Removed from wishlist', { autoClose: 1000 });
+    }
+    else {
+      addToFavorites(listingId);
+      toast.success('Added to wishlist', { autoClose: 1000 });
+    }
     setNewListings((prevListings) => prevListings.map((listing) => {
        if (listing.id === listingId) {
         return { ...listing, isSaved: !(listing.isSaved) }
