@@ -7,7 +7,10 @@ import { favoriteListings } from "@/test-data/favorite-listings";
 import { IListing } from "@/types";
 
 const Favorites = () => {
-  const { data, isFetching } = useGetAllFavoritesQuery();
+  const { data, isFetching, isLoading } = useGetAllFavoritesQuery();
+
+  console.log('isLoading', isLoading);
+  console.log('isFetching', isFetching);
 
   return (
     <div className="py-8">
