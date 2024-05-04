@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ToastContainer } from 'react-toastify';
+import { GoogleOAuthProvider } from '@react-oauth/google'
 
 import './globals.css'
 import 'react-toastify/dist/ReactToastify.css';
@@ -28,25 +29,27 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <ReduxProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-            >
-            <Header />
-            <SearchModal />
-            <LoginModal />
-            <RegisterModal />
-            <AllFeaturesModal />
-            <ToastContainer />
-            <CreatePropertyModal />
-            {children}
-          </ThemeProvider>
-        </ReduxProvider>
-      </body>
+      <GoogleOAuthProvider clientId='831508491450-n4nps6ofjnc5mubump9d21nvc9qqoik8.apps.googleusercontent.com'>
+        <body className={inter.className}>
+          <ReduxProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+              >
+              <Header />
+              <SearchModal />
+              <LoginModal />
+              <RegisterModal />
+              <AllFeaturesModal />
+              <ToastContainer />
+              <CreatePropertyModal />
+              {children}
+            </ThemeProvider>
+          </ReduxProvider>
+        </body>
+      </GoogleOAuthProvider>
     </html>
   )
 }
