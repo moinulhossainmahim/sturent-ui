@@ -1,9 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
 export interface IUser {
-  name: string;
+  fullName: string;
   email: string;
-  img: string;
+  picture: string;
+  isGoogleLogin: boolean;
 }
 
 export interface AuthStore {
