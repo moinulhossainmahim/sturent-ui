@@ -1,9 +1,11 @@
 'use client';
 
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
+import { useGoogleLogin } from "@react-oauth/google";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
+import { toast } from "react-toastify";
 
 import Modal from "./Modal";
 import Heading from "../Heading";
@@ -13,24 +15,39 @@ import { ReduxStore } from "@/redux/store";
 import { ModalKey, setModal } from '@/redux/features/modals/modalSlice';
 import { useGoogleLoginMutation, useLoginMutation, useLogoutMutation } from "@/redux/features/auth/authApiSlice";
 import { setCredentials, logOut } from "@/redux/features/auth/authSlice";
-import { useGoogleLogin } from "@react-oauth/google";
 
 const LoginModal = () => {
+  const dispatch = useDispatch();
+  const { LoginModal, RegisterModal } = useSelector((state: ReduxStore) => state.modal);
   const [login, { isLoading }] = useLoginMutation()
+  const [logout] = useLogoutMutation();
   const [googleLoginApi, googleLoginApiResult] = useGoogleLoginMutation();
 
   const googleLogin = useGoogleLogin({
+    flow: 'auth-code',
     onSuccess: async tokenResponse => {
-      const result = await googleLoginApi(tokenResponse.access_token).unwrap();
-      console.log('googleLoginResult', result);
+      const result = await googleLoginApi(tokenResponse.code).unwrap();
+      const { accessToken, refreshToken, email: newEmail, fullName, isGoogleLogin, picture } = result;
+      dispatch(setCredentials({
+        user: {
+          email: newEmail,
+          fullName,
+          isGoogleLogin,
+          picture,
+        },
+        accessToken,
+        refreshToken,
+        isAuthenticated: true,
+      }))
+      toast.success('Logged In successfully', { autoClose: 1000 });
+      dispatch(setModal({ key: ModalKey.LoginModal, value: false }))
     },
   });
-  const [logout] = useLogoutMutation();
 
-  const dispatch = useDispatch();
-  const { LoginModal, RegisterModal } = useSelector((state: ReduxStore) => state.modal);
   const {
     register,
+    handleSubmit,
+    reset,
     formState: {
       errors,
     }
@@ -41,16 +58,24 @@ const LoginModal = () => {
     }
   });
 
-  async function handleSubmit() {
-    const userData = await login({ email: 'moinul@gmail.com', password: '12345' }).unwrap();
-    dispatch(setCredentials({ user: undefined, ...userData, isAuthenticated: true }));
-  }
-
-  async function handleLogout() {
-    const response = await logout({}) as { data: { message: string, status: number } };
-    if (response?.data?.status === 200) {
-      dispatch(logOut());
-    }
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const { email, password } = data;
+    const userData = await login({ email, password }).unwrap();
+    const { accessToken, refreshToken, email: newEmail, fullName, isGoogleLogin, picture } = userData;
+    dispatch(setCredentials({
+      user: {
+        email: newEmail,
+        fullName,
+        isGoogleLogin,
+        picture,
+      },
+      accessToken,
+      refreshToken,
+      isAuthenticated: true,
+    }))
+    reset();
+    toast.success('Logged In successfully', { autoClose: 1000 });
+    dispatch(setModal({ key: ModalKey.LoginModal, value: false }))
   }
 
   const bodyContent = (
@@ -94,11 +119,6 @@ const LoginModal = () => {
         icon={AiFillGithub}
         onClick={() => {}}
       />
-      <Button
-        outline
-        label="Logout"
-        onClick={handleLogout}
-      />
       <div
         className="
           text-popover-foreground
@@ -127,7 +147,7 @@ const LoginModal = () => {
   return (
     <Modal
       disabled={false}
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       isOpen={LoginModal}
       title="Login"
       actionLabel="Continue"
