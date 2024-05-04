@@ -11,11 +11,20 @@ import Button from "../Button";
 import Input from "../inputs/Input";
 import { ReduxStore } from "@/redux/store";
 import { ModalKey, setModal } from '@/redux/features/modals/modalSlice';
-import { useLoginMutation, useLogoutMutation } from "@/redux/features/auth/authApiSlice";
+import { useGoogleLoginMutation, useLoginMutation, useLogoutMutation } from "@/redux/features/auth/authApiSlice";
 import { setCredentials, logOut } from "@/redux/features/auth/authSlice";
+import { useGoogleLogin } from "@react-oauth/google";
 
 const LoginModal = () => {
   const [login, { isLoading }] = useLoginMutation()
+  const [googleLoginApi, googleLoginApiResult] = useGoogleLoginMutation();
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: async tokenResponse => {
+      const result = await googleLoginApi(tokenResponse.access_token).unwrap();
+      console.log('googleLoginResult', result);
+    },
+  });
   const [logout] = useLogoutMutation();
 
   const dispatch = useDispatch();
@@ -77,7 +86,7 @@ const LoginModal = () => {
         outline
         label="Continue with Google"
         icon={FcGoogle}
-        onClick={() => {}}
+        onClick={() => googleLogin()}
       />
       <Button
         outline
