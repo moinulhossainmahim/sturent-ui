@@ -6,6 +6,9 @@ import { toast } from "react-toastify";
 
 import { listings } from "@/test-data/listings";
 import { useAddToFavoriteMutation, useRemoveFromFavoriteMutation } from "@/redux/features/favorites/favoritesApiSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { ReduxStore } from "@/redux/store";
+import { ModalKey, setModal } from "@/redux/features/modals/modalSlice";
 
 interface HeartButtonProps {
   listingId: number
@@ -14,12 +17,20 @@ interface HeartButtonProps {
 const HeartButton: React.FC<HeartButtonProps> = ({
   listingId,
 }) => {
+  const dispatch = useDispatch();
   const [newListings, setNewListings] = useState(listings);
   const [addToFavorites, addToFavoritesResult] = useAddToFavoriteMutation();
   const [removeFromFavorites, removeFromFavoritesResult] = useRemoveFromFavoriteMutation();
+  const { isAuthenticated } = useSelector((state: ReduxStore) => state.auth);
+
   const listing = newListings.find((listing) => listing.id === listingId);
 
-  const toggleFavourite = (listingId: number) => {
+  const toggleFavorite = (listingId: number) => {
+    if(!isAuthenticated) {
+      dispatch(setModal({ key: ModalKey.LoginModal, value: true }));
+      return;
+    }
+
     if (listing?.isSaved) {
       removeFromFavorites(listingId);
       toast.success('Removed from wishlist', { autoClose: 1000 });
@@ -40,7 +51,7 @@ const HeartButton: React.FC<HeartButtonProps> = ({
   return (
     <div
       onClick={(e) => {
-        toggleFavourite(listing?.id || 0)
+        toggleFavorite(listing?.id || 0)
         e.stopPropagation();
       }}
       className="
