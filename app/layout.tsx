@@ -29,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <GoogleOAuthProvider clientId='831508491450-n4nps6ofjnc5mubump9d21nvc9qqoik8.apps.googleusercontent.com'>
+      <GoogleOAuthProvider clientId={process.env.GOOGLE_CLIENT_ID as string}>
         <body className={inter.className}>
           <ReduxProvider>
             <ThemeProvider
