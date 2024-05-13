@@ -2,7 +2,8 @@
 
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useDispatch, useSelector } from "react-redux";
 
 import Modal from "./Modal";
@@ -11,6 +12,7 @@ import Input from "../inputs/Input";
 import Button from "../Button";
 import { ReduxStore } from "@/redux/store";
 import { ModalKey, setModal } from '@/redux/features/modals/modalSlice';
+import { TSignUpSchema, signUpSchema } from "@/lib/schemaTypes";
 
 const RegisterModal = () => {
   const dispatch = useDispatch();
@@ -21,16 +23,12 @@ const RegisterModal = () => {
     formState: {
       errors,
     }
-  } = useForm<FieldValues>({
-    defaultValues: {
-      name: '',
-      email: '',
-      password: '',
-    }
+  } = useForm<TSignUpSchema>({
+    resolver: zodResolver(signUpSchema),
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log('data');
+  const onSubmit = (data: TSignUpSchema) => {
+    console.log('data', data);
   }
 
   const bodyContent = (
@@ -47,14 +45,20 @@ const RegisterModal = () => {
         errors={errors}
         required
       />
+      {errors.email ? (
+        <p className="text-rose-500 text-sm">{errors.email.message}</p>
+      ) : null}
       <Input
-        id="name"
+        id="fullName"
         label="Name"
         disabled={false}
         register={register}
         errors={errors}
         required
       />
+      {errors.fullName ? (
+        <p className="text-rose-500 text-sm">{errors.fullName.message}</p>
+      ) : null}
       <Input
         id="password"
         label="Password"
@@ -64,6 +68,9 @@ const RegisterModal = () => {
         errors={errors}
         required
       />
+      {errors.password ? (
+        <p className="text-rose-500 text-sm">{errors.password.message}</p>
+      ) : null}
     </div>
   )
 
