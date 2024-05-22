@@ -77,3 +77,37 @@
   - **If everyting setup correctly and your containers are running then you will get the application running in [localhost:3000](http://localhost:3000)**
 
   - **Update port mappings in `docker-compose.yml` file if you want to run in different port**
+
+<a name="feat"></a>
+# ⚙️ Features
+
+### 1. User Identity and Authentication Flow
+
+  - **User Registration**: Enable customers to create accounts.
+  - **User Authentication**: Implement JWT-based authentication mechanisms to secure user sessions.
+  - **Google Authentication**: Integrate google authentication using google-0auth2.
+  - **User Profiles**: Enable users to view and update their profiles.
+
+### 2. Listing and Browsing
+
+  - **Host Listings**: Hosts can post single rooms, sublets, and flats.
+  - **Detailed Listings:**: Each listing includes photos, location, description, and features.
+
+### 3. Viewing and Interaction
+
+  - **Wishlist management**: User can save any listing to the wishlist for his next ordering.
+  - **Detailed View**: Users can click on a listing to see more details, including recommended rooms.
+  - **Dark and Light Mode**: Provides an option to switch between dark and light themes for better user experience.
+
+### 4. Security
+
+  - **JWT Tokenization**: Implement robust JSON Web Token mechanisms to fortify authentication.
+
+### 5. Validation
+
+  - **Schema Validation**: Implemented **zod** schema validation with integrating **React Hook Form** in Login and Registration form.
+
+### 6. Pagination and Filtering
+
+  - **Paginating in listings**: Added pagination for fetching more listings.
+  - **Listings Filtering**: Implmented filter listings by single, sublet, flat, gender, area, university name.
