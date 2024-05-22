@@ -12,3 +12,17 @@
   7. [ How it can be improved ](#improvements)
   8. [ Demo Video ](#video)
 
+<a name="tech"></a>
+## 📦 Technologies
+
+  - `NextJS`
+  - `TypeScript`
+  - `Tailwind CSS`
+  - `Shadcn`
+  - `Redux Toolkit`
+  - `Rtk Query`
+  - `React Toastify`
+  - `Google 0Auth`
+  - `Zod`
+  - `React Hook Form`
+  - `Docker`
