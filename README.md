@@ -1,6 +1,6 @@
 # stuRENT
 
-**stuRENT** is a room finding website, designed for university students, allows hosts to list single rooms, sublets, and flats, while students can filter and rent these accommodations based on type, gender, and university.
+**stuRENT** is a room finding website, designed for university students, allows hosts to list single rooms, sublets, and flats, while students can filter and rent these accommodations based on type, gender, and university. stuRENT is fully **Responsive**.
 
 ## Table of contents
   1. [ Technologies ](#tech)
@@ -111,3 +111,31 @@
 
   - **Paginating in listings**: Added pagination for fetching more listings.
   - **Listings Filtering**: Implmented filter listings by single, sublet, flat, gender, area, university name.
+
+<a name="process"></a>
+## 🔄 The Processes I have followed for creating the project.
+
+  1. Then Dockerize the application for running in using docker.
+
+  3. Then I had implmented different pages file and folder structure.
+    
+  4. After that I am working on home page UI with all component which includes header.
+
+  5. Implement modals UI which includes login, registration, filtering modals, create listing modal etc.
+
+  6. Added single listings page UI for showing listing details.
+
+  7. Added test data with data types where I needed for example for listings, universities, areas etc which help me later when I am integrating with the backend.
+
+  8. Added Redux for state management and include all the global state in Redux which includes Modals and others states.
+
+  9. Integrated Register, Login, Logout with backend and frontend.
+
+  10. Added React Hook Form and zod validation in Register and Login modals.
+    
+  11. Added React Hook Form and zod validation in Create Listing modals.
+
+  12. Integrated Google login.
+
+  13. Make website responsive for mobiles and tablet devices.
+
