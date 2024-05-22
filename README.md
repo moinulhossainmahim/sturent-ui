@@ -165,3 +165,17 @@
 ### Dockerizing
 
   - **Docker**: Learned how to dockerize a next.js application.
+
+<a name="improvements"></a>
+## 💭 How can it be improved?
+
+  - Implement advanced search filters such as price range, room size, and amenities (e.g., Wi-Fi, parking, furnished).
+  - Add a feature allowing students to leave reviews and ratings for listings and hosts to build trust and provide insights to potential renters.
+  - Integrate a map view using Google Maps API to display the location of listings, making it easier for users to find properties in specific areas.
+  - Implement email and in-app notifications for new listings, updates to favorite listings, and messages from hosts.
+
+
+<a name="video"></a>
+## 🍿 Demo Video
+
+  - Will be provided soon
