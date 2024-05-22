@@ -139,3 +139,29 @@
 
   13. Make website responsive for mobiles and tablet devices.
 
+<a name="learning"></a>
+## 📚 What I have Learned
+
+  During this project I have faced many problems and overcome those for completing my ideas to the project.
+  
+  - **Advanced Authentication Techniques**: Gained experience in implementing manual user authentication and integrating Google OAuth for secure and user-friendly login options.
+
+### Discovering New Tools:
+
+  - **Next.js**: Learned the use of Next.js for server-side rendering, enhancing the performance and SEO of the website.
+  - **React Hook Form and Zod**: I have studied about form validation using React Hook Form and Zod and implemented the schema types.
+  - **Shadcn and Tailwind CSS**: Learned to create responsive and aesthetically pleasing user interfaces using Shadcn and Tailwind CSS, providing a great user experience across devices.
+  - **RTK Query**: Learned how use RTK Query to handle API integrations, providing a seamless and efficient data fetching mechanism.
+
+### Token Authentication:
+
+  - **JWT**: How jwt authentication exactly works and how to use this in every request.
+
+### Functionalities:
+
+  - **Dynamic Filtering and Listing Management**: Developed dynamic filtering options to enhance the browsing experience, allowing users to filter listings by type, gender, and university.
+  - **Enhanced User Experience with Dark and Light Mode**: Implemented dark and light mode themes to cater to user preferences, enhancing overall user experience.
+
+### Dockerizing
+
+  - **Docker**: Learned how to dockerize a next.js application.
