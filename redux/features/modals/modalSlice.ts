@@ -6,6 +6,8 @@ export enum ModalKey {
   RegisterModal = 'RegisterModal',
   CreatePropertyModal = 'CreatePropertyModal',
   ListingFeaturesModal = 'ListingFeaturesModal',
+  UpdateGeneralInfoModal = 'UpdateGeneralInfoModal',
+  AddressModal = 'AddressModal',
 }
 
 interface IModalAction {
@@ -21,6 +23,8 @@ const initialState: ModalStore = {
   [ModalKey.RegisterModal]: false,
   [ModalKey.CreatePropertyModal]: false,
   [ModalKey.ListingFeaturesModal]: false,
+  [ModalKey.UpdateGeneralInfoModal]: false,
+  [ModalKey.AddressModal]: false,
 }
 
 const modalSlice = createSlice({
