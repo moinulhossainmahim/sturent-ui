@@ -7,7 +7,7 @@ import Button from '../Button';
 
 const ProfileVerificationCard = () => {
   return (
-    <Card className="w-[280px] shadow-xl rounded-xl">
+    <Card className="w-full sm:w-[450px] md:w-[280px] shadow-xl rounded-xl">
       <CardContent className='flex flex-col'>
         <h6 className="text-lg font-semibold mt-4">Verified Info</h6>
         <div className='mt-6'>
