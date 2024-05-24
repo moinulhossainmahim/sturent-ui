@@ -13,20 +13,18 @@ export const signInSchema = z.object({
   password: z.string().min(8, 'Password length is 8 character minimum'),
 })
 
-const addressSchema = z.object({
+export const addressSchema = z.object({
   city: z.string().min(1, { message: 'City is required' }),
   state: z.string().min(1, { message: 'State is required' }),
   sector: z.string().min(1, { message: 'Sector / Block is required' }),
-  road: z.number().min(1, { message: 'Road number is required' }),
-  house: z.number().min(1, { message: 'House number is required' }),
+  road: z.string().min(1, { message: 'Road number is required' }),
+  house: z.string().min(1, { message: 'House number is required' }),
 });
 
 export const updateGeneralInfoSchema = z.object({
   email: z.string().email(),
   fullName: z.string().min(1, 'Full name required'),
-  phone: z.string().regex(/^\+880[0-9]{10}$/, {
-    message: "Phone number must start with +880 and be followed by exactly 10 digits",
-  })
+  phone: z.string().min(11, 'Phone number must contain 11 digits'),
 })
 
 export type TSignUpSchema = z.infer<typeof signUpSchema>;
