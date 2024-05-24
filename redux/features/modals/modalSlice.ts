@@ -8,6 +8,9 @@ export enum ModalKey {
   ListingFeaturesModal = 'ListingFeaturesModal',
   UpdateGeneralInfoModal = 'UpdateGeneralInfoModal',
   AddressModal = 'AddressModal',
+  StudentIDModal = 'StudentIDModal',
+  GovtIDModal = 'GovtIDModal',
+  UpdateProfileImageModal = 'UpdateProfileImageModal',
 }
 
 interface IModalAction {
@@ -25,6 +28,9 @@ const initialState: ModalStore = {
   [ModalKey.ListingFeaturesModal]: false,
   [ModalKey.UpdateGeneralInfoModal]: false,
   [ModalKey.AddressModal]: false,
+  [ModalKey.StudentIDModal]: false,
+  [ModalKey.GovtIDModal]: false,
+  [ModalKey.UpdateProfileImageModal]: false,
 }
 
 const modalSlice = createSlice({
