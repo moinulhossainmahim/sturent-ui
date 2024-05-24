@@ -1,21 +1,22 @@
 'use client';
 
+import { TUpdateGeneralInfoSchema, TSignInSchema, TSignUpSchema, TAddressSchema } from "@/lib/schemaTypes";
 import {
   FieldErrors,
-  FieldValues,
   UseFormRegister
 } from "react-hook-form";
 import { TbCoinTaka } from "react-icons/tb";
 
 interface InputProps {
-  id: string;
-  label: string;
+  id: 'email' | 'password' | 'fullName' | 'phone' | 'city' | 'state' | 'sector' | 'road' | 'house';
+  label?: string;
   type?: string;
   disabled?: boolean;
   formatPrice?: boolean;
   required?: boolean;
-  register: UseFormRegister<FieldValues>,
-  errors: FieldErrors
+  register: UseFormRegister<TSignUpSchema> | UseFormRegister<TSignInSchema> | UseFormRegister<TUpdateGeneralInfoSchema> | UseFormRegister<TAddressSchema>;
+  errors: FieldErrors;
+  mt?: number;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -27,9 +28,11 @@ const Input: React.FC<InputProps> = ({
   register,
   required,
   errors,
+  mt,
 }) => {
+  const registerField = register as UseFormRegister<TSignUpSchema | TSignInSchema | TUpdateGeneralInfoSchema | TAddressSchema>;
   return (
-    <div className="w-full relative">
+    <div className={`w-full relative mt-${mt ? mt : 0}`}>
       {formatPrice && (
         <TbCoinTaka
           size={24}
@@ -44,7 +47,7 @@ const Input: React.FC<InputProps> = ({
       <input
         id={id}
         disabled={disabled}
-        {...register(id, { required })}
+        {...registerField(id, { required })}
         placeholder=" "
         type={type}
         className={`
@@ -65,26 +68,28 @@ const Input: React.FC<InputProps> = ({
           ${errors[id] ? 'focus:primary' : 'focus:border-card-foreground'}
         `}
       />
-      <label
-        className={`
-          absolute
-          text-md
-          duration-150
-          transform
-          -translate-y-3
-          top-5
-          z-10
-          origin-[0]
-          ${formatPrice ? 'left-9' : 'left-4'}
-          peer-placeholder-shown:scale-100
-          peer-placeholder-shown:translate-y-0
-          peer-focus:scale-75
-          peer-focus:-translate-y-4
-          ${errors[id] ? 'text-rose-500' : 'text-zinc-400'}
-        `}
-      >
-        {label}
-      </label>
+      {label ? (
+        <label
+          className={`
+            absolute
+            text-md
+            duration-150
+            transform
+            -translate-y-3
+            top-5
+            z-10
+            origin-[0]
+            ${formatPrice ? 'left-9' : 'left-4'}
+            peer-placeholder-shown:scale-100
+            peer-placeholder-shown:translate-y-0
+            peer-focus:scale-75
+            peer-focus:-translate-y-4
+            ${errors[id] ? 'text-rose-500' : 'text-zinc-400'}
+          `}
+        >
+          {label}
+        </label>
+      ) : null}
     </div>
    );
 }

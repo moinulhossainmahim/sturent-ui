@@ -27,6 +27,9 @@ const UserMenu= () => {
 
   async function handleLogout() {
     const response = await logout({}) as { data: { message: string, status: number } };
+    localStorage.setItem('accessToken', '');
+    localStorage.setItem('refreshToken', '');
+    localStorage.setItem('user', '');
     if (response?.data?.status === 200) {
       dispatch(logOut());
       toast.success('Logged Out successfully', { autoClose: 1000 });
@@ -38,7 +41,7 @@ const UserMenu= () => {
     <>
       <div className="relative">
         <div className="flex flex-row items-center gap-3">
-          <div
+          <button
             onClick={() => {
               if(isAuthenticated) {
                 dispatch(setModal({ key: ModalKey.CreatePropertyModal, value: true }))
@@ -60,8 +63,8 @@ const UserMenu= () => {
             "
           >
             StuRENT your home
-          </div>
-          <div
+          </button>
+          <button
             onClick={toggleOpen}
             className="
               p-4
@@ -89,7 +92,7 @@ const UserMenu= () => {
                 alt="avatar"
               />
             </div>
-          </div>
+          </button>
         </div>
         {isOpen && (
           <div
@@ -140,6 +143,14 @@ const UserMenu= () => {
                         toggleOpen();
                       }}
                       label="My favorites"
+                      />
+                  </Link>
+                  <Link href='/profile'>
+                    <MenuItem
+                      onClick={() => {
+                        toggleOpen();
+                      }}
+                      label="Profile"
                       />
                   </Link>
                   <MenuItem

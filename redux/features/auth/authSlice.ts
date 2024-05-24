@@ -4,6 +4,7 @@ export interface IUser {
   fullName: string;
   email: string;
   picture: string;
+  phone: number;
   isGoogleLogin: boolean;
 }
 

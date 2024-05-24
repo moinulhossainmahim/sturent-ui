@@ -1,5 +1,3 @@
-'use client';
-
 import Container from "@/components/shared/Container";
 import ListingCard from "@/components/shared/listings/ListingCard";
 import { SkeletonLoader } from "@/components/shared/loader/SkeletonLoader";

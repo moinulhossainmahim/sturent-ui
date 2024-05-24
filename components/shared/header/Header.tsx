@@ -1,6 +1,7 @@
 'use client';
 
-import * as React from "react"
+import { useEffect } from "react"
+import { useDispatch } from "react-redux";
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
@@ -11,8 +12,27 @@ import Search from "./Search";
 import UserMenu from "./UserMenu";
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
+import { setCredentials } from "@/redux/features/auth/authSlice";
 
 const Header = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem('accessToken');
+    if (token) {
+      //@ts-ignore
+      const user = JSON.parse(localStorage.getItem('user'));
+      const accessToken = localStorage.getItem('accessToken') as string;
+      const refreshToken = localStorage.getItem('refreshToken') as string;
+      dispatch(setCredentials({
+        user,
+        accessToken,
+        refreshToken,
+        isAuthenticated: true,
+      }))
+    }
+  }, [])
+
   const { setTheme } = useTheme();
   return (
     <div className="w-full bg-background z-10 shadow-sm">
