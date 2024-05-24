@@ -1,11 +1,12 @@
 'use client';
 
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useGoogleLogin } from "@react-oauth/google";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import Modal from "./Modal";
 import Heading from "../Heading";
@@ -14,7 +15,8 @@ import Input from "../inputs/Input";
 import { ReduxStore } from "@/redux/store";
 import { ModalKey, setModal } from '@/redux/features/modals/modalSlice';
 import { useGoogleLoginMutation, useLoginMutation, useLogoutMutation } from "@/redux/features/auth/authApiSlice";
-import { setCredentials, logOut } from "@/redux/features/auth/authSlice";
+import { setCredentials } from "@/redux/features/auth/authSlice";
+import { TSignInSchema, signInSchema } from "@/lib/schemaTypes";
 
 const LoginModal = () => {
   const dispatch = useDispatch();
@@ -22,18 +24,32 @@ const LoginModal = () => {
   const [login, { isLoading }] = useLoginMutation()
   const [logout] = useLogoutMutation();
   const [googleLoginApi, googleLoginApiResult] = useGoogleLoginMutation();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: {
+      errors,
+    }
+  } = useForm<TSignInSchema>({
+    resolver: zodResolver(signInSchema),
+  });
 
   const googleLogin = useGoogleLogin({
     flow: 'auth-code',
     onSuccess: async tokenResponse => {
       const result = await googleLoginApi(tokenResponse.code).unwrap();
       const { accessToken, refreshToken, email: newEmail, fullName, isGoogleLogin, picture } = result;
+      localStorage.setItem('user', JSON.stringify({ email: newEmail, fullName, isGoogleLogin, picture }));
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
       dispatch(setCredentials({
         user: {
           email: newEmail,
           fullName,
           isGoogleLogin,
           picture,
+          phone: NaN,
         },
         accessToken,
         refreshToken,
@@ -44,30 +60,20 @@ const LoginModal = () => {
     },
   });
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: {
-      errors,
-    }
-  } = useForm<FieldValues>({
-    defaultValues: {
-      email: '',
-      password: '',
-    }
-  });
-
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+  const onSubmit = async (data: TSignInSchema) => {
     const { email, password } = data;
     const userData = await login({ email, password }).unwrap();
     const { accessToken, refreshToken, email: newEmail, fullName, isGoogleLogin, picture } = userData;
+    localStorage.setItem('user', JSON.stringify({ email:newEmail, fullName, isGoogleLogin, picture }));
+    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
     dispatch(setCredentials({
       user: {
         email: newEmail,
         fullName,
         isGoogleLogin,
         picture,
+        phone: NaN,
       },
       accessToken,
       refreshToken,
@@ -90,8 +96,10 @@ const LoginModal = () => {
         disabled={false}
         register={register}
         errors={errors}
-        required
       />
+      {errors.email ? (
+        <p className="text-rose-500 text-sm">{errors.email.message}</p>
+      ) : null}
       <Input
         id="password"
         label="Password"
@@ -99,8 +107,10 @@ const LoginModal = () => {
         disabled={false}
         register={register}
         errors={errors}
-        required
       />
+      {errors.password ? (
+        <p className="text-rose-500 text-sm">{errors.password.message}</p>
+      ) : null}
     </div>
   )
 
