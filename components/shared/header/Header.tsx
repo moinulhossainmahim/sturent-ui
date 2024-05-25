@@ -5,10 +5,8 @@ import { useDispatch } from "react-redux";
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
-import Categories from "../Categories";
 import Container from "../Container";
 import Logo from "./Logo";
-import Search from "./Search";
 import UserMenu from "./UserMenu";
 import { Button } from "@/components/ui/button"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
@@ -16,6 +14,7 @@ import { setCredentials } from "@/redux/features/auth/authSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const { setTheme } = useTheme();
 
   useEffect(() => {
     const token = localStorage.getItem('accessToken');
@@ -33,7 +32,7 @@ const Header = () => {
     }
   }, [])
 
-  const { setTheme } = useTheme();
+
   return (
     <div className="w-full bg-background z-10 shadow-sm">
       <div className="py-2 border-b-[1px] border-mute">
@@ -48,7 +47,6 @@ const Header = () => {
             "
           >
             <Logo />
-            <Search />
             <div className="flex justify-between items-center gap-5">
               <UserMenu />
               <DropdownMenu>
@@ -75,7 +73,6 @@ const Header = () => {
           </div>
         </Container>
       </div>
-      <Categories />
     </div>
   )
 }
