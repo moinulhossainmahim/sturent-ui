@@ -5,7 +5,7 @@ interface PlaceProps {
   setplace: Function;
 }
 
-const placeList = [
+export const placeList = [
   {
     id: 1,
     name: 'Uttara',
