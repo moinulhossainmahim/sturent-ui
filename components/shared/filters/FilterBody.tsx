@@ -39,9 +39,9 @@ const FilterBody = ({ priceRange, setPriceRange, filters, handleCheckboxChange, 
       </div>
       <Separator className="my-6 h-[2px]" />
       <div>
-        <div className="flex justify-between mb-4 items-center">
+        <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-medium">Price Range</h3>
-          <Button variant='outline' className="border-none text-primary bg-transparent hover:bg-transparent hover:text-primary" onClick={() => {}}>Apply</Button>
+          <Button variant='outline' className="bg-transparent border-none text-primary hover:bg-transparent hover:text-primary" onClick={() => {}}>Apply</Button>
         </div>
         <div>
           <SliderComponent
@@ -66,9 +66,9 @@ const FilterBody = ({ priceRange, setPriceRange, filters, handleCheckboxChange, 
       </div>
       <Separator className="my-6 h-[2px]" />
       <div className="pb-4 mb-4">
-        <div className="flex justify-between mb-4 items-center">
+        <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-medium">Area and University</h3>
-          <Button variant='outline' className="border-none text-primary bg-transparent hover:bg-transparent hover:text-primary" onClick={() => {}}>Apply Filter</Button>
+          <Button variant='outline' className="bg-transparent border-none text-primary hover:bg-transparent hover:text-primary" onClick={() => {}}>Apply Filter</Button>
         </div>
         <div className="flex flex-col gap-4">
           <FilterSelect name="University" items={institutionList} value={university} setValue={setUniversity} />

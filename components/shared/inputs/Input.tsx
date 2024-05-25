@@ -8,7 +8,7 @@ import {
 import { TbCoinTaka } from "react-icons/tb";
 
 interface InputProps {
-  id: 'email' | 'password' | 'fullName' | 'phone' | 'city' | 'state' | 'sector' | 'road' | 'house';
+  id: string;
   label?: string;
   type?: string;
   disabled?: boolean;
@@ -36,17 +36,13 @@ const Input: React.FC<InputProps> = ({
       {formatPrice && (
         <TbCoinTaka
           size={24}
-          className="
-            text-foreground
-            absolute
-            top-5
-            left-2
-          "
+          className="absolute  text-foreground top-5 left-2"
         />
       )}
       <input
         id={id}
         disabled={disabled}
+        //@ts-ignore
         {...registerField(id, { required })}
         placeholder=" "
         type={type}
