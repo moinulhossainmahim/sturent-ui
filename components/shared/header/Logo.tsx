@@ -12,8 +12,6 @@ const Logo = () => {
       src='/assets/sturent-logo.png'
       alt="logo"
       className="
-        hidden
-        md:block
         cursor-pointer
       "
       height={10}

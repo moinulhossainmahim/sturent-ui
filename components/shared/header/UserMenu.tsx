@@ -67,7 +67,8 @@ const UserMenu= () => {
           <button
             onClick={toggleOpen}
             className="
-              p-4
+              px-[.6rem]
+              py-[.2rem]
               md:py-1
               md:px-2
               border-[1px]
@@ -83,7 +84,7 @@ const UserMenu= () => {
               "
           >
             <AiOutlineMenu />
-            <div className="hidden md:block">
+            <div>
               <Image
                 className="rounded-full"
                 src={ isAuthenticated && user.picture ? user.picture : '/assets/placeholder.jpg'}
