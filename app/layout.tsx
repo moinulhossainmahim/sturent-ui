@@ -7,7 +7,6 @@ import './globals.css'
 import 'react-toastify/dist/ReactToastify.css';
 
 import Header from '@/components/shared/header/Header'
-import SearchModal from '@/components/shared/modals/SearchModal'
 import LoginModal from '@/components/shared/modals/LoginModal'
 import RegisterModal from '@/components/shared/modals/RegisterModal'
 import AllFeaturesModal from '@/components/shared/modals/AllFeaturesModal'
@@ -39,7 +38,6 @@ export default function RootLayout({
               disableTransitionOnChange
               >
               <Header />
-              <SearchModal />
               <LoginModal />
               <RegisterModal />
               <AllFeaturesModal />
