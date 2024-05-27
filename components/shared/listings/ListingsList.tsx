@@ -1,9 +1,11 @@
 'use client';
 
-import { listings } from "@/test-data/listings";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+
+import { listings } from "@/test-data/listings";
+import { Button } from "@/components/ui/button";
+import HeartButton from "../HeartButton";
 
 const ListingsList = () => {
   const router = useRouter();
@@ -12,14 +14,19 @@ const ListingsList = () => {
     <div className="flex flex-col gap-10">
       {listings.map((listing) => (
         <div className="flex flex-col gap-8 lg:flex-row" key={listing.id}>
-          <div className="rounded-lg">
+          <div className="rounded-lg relative overflow-hidden group">
             <Image
               src={listing.featuredImg}
               alt={listing.title}
               height={500}
               width={500}
-              className="w-full rounded-lg"
+              className="w-full rounded-lg object-cover h-full group-hover:scale-110 transition cursor-pointer"
             />
+            <div className="absolute top-3 right-3">
+              <HeartButton
+                listingId={listing.id}
+              />
+            </div>
           </div>
           <div className="flex flex-col justify-center gap-4">
             <div>
