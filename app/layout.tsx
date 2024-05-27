@@ -6,13 +6,14 @@ import { GoogleOAuthProvider } from '@react-oauth/google'
 import './globals.css'
 import 'react-toastify/dist/ReactToastify.css';
 
-import Header from '@/components/shared/header/Header'
+import Header from '@/components/layout/header';
 import LoginModal from '@/components/shared/modals/LoginModal'
 import RegisterModal from '@/components/shared/modals/RegisterModal'
 import AllFeaturesModal from '@/components/shared/modals/AllFeaturesModal'
 import ThemeProvider from '@/components/shared/theme/theme-provider';
 import CreatePropertyModal from '@/components/shared/modals/CreatePropertyModal';
 import ReduxProvider from '@/redux/ReduxProvider';
+import Footer from '@/components/layout/footer';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -44,6 +45,7 @@ export default function RootLayout({
               <ToastContainer />
               <CreatePropertyModal />
               {children}
+              <Footer />
             </ThemeProvider>
           </ReduxProvider>
         </body>
