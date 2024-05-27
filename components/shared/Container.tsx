@@ -1,9 +1,10 @@
 interface ContainerProps {
   children: React.ReactNode;
   isCategory?: boolean;
+  isListing?: boolean;
 }
 
-const Container: React.FC<ContainerProps> = ({ children, isCategory }) => {
+const Container: React.FC<ContainerProps> = ({ children, isCategory, isListing }) => {
   return (
     <div
       className={
@@ -14,6 +15,7 @@ const Container: React.FC<ContainerProps> = ({ children, isCategory }) => {
       sm:px-2
       px-4
       ${isCategory ? 'flex justify-center' : ''}
+      ${isListing ? 'pb-40' : ''}
       `
     }
     >

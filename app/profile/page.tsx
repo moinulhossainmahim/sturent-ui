@@ -3,7 +3,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <section className='flex justify-center w-[100vw] h-[93vh] items-center'>
+    <section className='flex justify-center w-[100vw] items-center py-12'>
       <div className='flex w-[80%] h-[80%] md:flex-row flex-col gap-20 xl:px-[10%]'>
         <div className='flex flex-col gap-10 items-center'>
           <ProfileUserCard />

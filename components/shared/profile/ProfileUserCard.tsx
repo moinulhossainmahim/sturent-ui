@@ -11,7 +11,7 @@ import ProfileImageUploadModal from '../modals/ProfileImageUploadModal';
 
 const ProfileUserCard = () => {
   const { openModal } = useModalAction(ModalKey.UpdateProfileImageModal);
-  const { picture, fullName } = useSelector((state: ReduxStore) => state.auth.user);
+  const auth = useSelector((state: ReduxStore) => state.auth);
 
   return (
     <>
@@ -19,7 +19,7 @@ const ProfileUserCard = () => {
         <CardContent className='flex flex-col justify-center items-center pt-6'>
           <div className="relative">
             <Image
-              src={picture}
+              src={auth?.user?.picture || ''}
               alt='/assets/placeholder.jpg'
               height={80}
               width={120}
@@ -34,7 +34,7 @@ const ProfileUserCard = () => {
               <FaCamera className="text-secondary" />
             </button>
           </div>
-          <h6 className="text-2xl font-bold mt-4">{fullName}</h6>
+          <h6 className="text-2xl font-bold mt-4">{auth?.user?.fullName || ''}</h6>
         </CardContent>
       </Card>
       <ProfileImageUploadModal />

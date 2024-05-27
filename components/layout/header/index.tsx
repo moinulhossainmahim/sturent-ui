@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux";
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 
-import Container from "../Container";
+import Container from "@/components/shared/Container";
 import Logo from "./Logo";
 import UserMenu from "./UserMenu";
 import { Button } from "@/components/ui/button"
@@ -15,6 +15,24 @@ import { setCredentials } from "@/redux/features/auth/authSlice";
 const Header = () => {
   const dispatch = useDispatch();
   const { setTheme } = useTheme();
+
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      const headerVisible = prevScrollPos > currentScrollPos || currentScrollPos < 10;
+      setVisible(headerVisible);
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPos]);
 
   useEffect(() => {
     const token = localStorage.getItem('accessToken');
@@ -32,10 +50,9 @@ const Header = () => {
     }
   }, [])
 
-
   return (
-    <div className="w-full bg-background z-10 shadow-sm">
-      <div className="py-2 border-b-[1px] border-mute">
+    <div className={`w-full bg-background z-10 shadow-sm sticky top-0 transition-transform duration-300 ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
+      <div className="py-4 border-b-[1px] border-mute">
         <Container>
           <div
             className="
