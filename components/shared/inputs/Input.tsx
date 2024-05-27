@@ -14,7 +14,7 @@ interface InputProps {
   disabled?: boolean;
   formatPrice?: boolean;
   required?: boolean;
-  register: UseFormRegister<TSignUpSchema> | UseFormRegister<TSignInSchema> | UseFormRegister<TUpdateGeneralInfoSchema> | UseFormRegister<TAddressSchema>;
+  register: UseFormRegister<any>;
   errors: FieldErrors;
   mt?: number;
 }
