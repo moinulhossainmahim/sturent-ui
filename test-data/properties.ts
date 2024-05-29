@@ -13,6 +13,8 @@ export const properties: IListing[] = [
     price: 15,
     location: 'Uttara, Dhaka',
     isSaved: true,
+    latitude: 23.873751,
+    longitude: 90.396454,
   },
   {
     id: 3,
@@ -26,5 +28,7 @@ export const properties: IListing[] = [
     price: 12,
     location: 'Chakbazar, Chattogram',
     isSaved: true,
+    latitude: 22.3518,
+    longitude: 91.8331,
   },
 ]
