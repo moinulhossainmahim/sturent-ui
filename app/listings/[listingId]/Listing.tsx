@@ -33,6 +33,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
     price: 150,
     location: '',
     isSaved: false,
+    latitude: 0,
+    longitude: 0,
   };
   const { data, isFetching } = useGetSinglePropertyQuery(id);
 
@@ -76,13 +78,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
             </Gallery>
           </div>
           <ListingInfo
-            category={listing.category}
-            description={listing?.description}
-            roomCount={listing?.roomCount}
-            guestCount={listing?.guestCount}
-            bathroomCount={listing?.bathroomCount}
-            locationValue={listing.location}
-            img={listing.featuredImg}
+            listing={listing}
           />
         </div>
       </div>
