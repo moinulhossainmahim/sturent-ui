@@ -1,5 +1,6 @@
 'use client';
 
+import dynamic from "next/dynamic";
 import { useDispatch } from "react-redux";
 import { FaBed, FaBath, FaKitchenSet, FaCar, FaWifi } from "react-icons/fa6";
 import { MdAllInbox, MdOutlineBalcony, MdElevator } from "react-icons/md";
@@ -12,8 +13,9 @@ import { IFeature } from "@/types/Feature";
 import RoomFeature from "../RoomFeature";
 import { Card, CardHeader, CardTitle, CardDescription, CardFooter, CardContent } from "@/components/ui/card";
 import { ModalKey, setModal } from '@/redux/features/modals/modalSlice';
-import Map from "../map/Map";
 import { IListing } from "@/types";
+
+const DynamicMap = dynamic(() => import('../map/Map'), { ssr: false });
 
 interface ListingInfoProps {
   listing: IListing;
@@ -214,7 +216,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({ listing }) => {
         </Card>
         <div className="w-full h-[600px] mt-4 mb-24">
           <h1 className="text-2xl font-bold mb-2">Location in Map</h1>
-          <Map items={[listing]} />
+          <DynamicMap items={[listing]} />
         </div>
       </div>
     </div>
