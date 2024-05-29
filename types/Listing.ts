@@ -12,4 +12,6 @@ export interface IListing {
   price: number;
   location: string;
   isSaved: boolean;
+  latitude: number;
+  longitude: number;
 }
