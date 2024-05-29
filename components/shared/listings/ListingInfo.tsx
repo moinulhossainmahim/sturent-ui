@@ -1,7 +1,6 @@
 'use client';
 
 import { useDispatch } from "react-redux";
-import { IconType } from "react-icons";
 import { FaBed, FaBath, FaKitchenSet, FaCar, FaWifi } from "react-icons/fa6";
 import { MdAllInbox, MdOutlineBalcony, MdElevator } from "react-icons/md";
 import { IoLocation } from "react-icons/io5";
@@ -13,19 +12,11 @@ import { IFeature } from "@/types/Feature";
 import RoomFeature from "../RoomFeature";
 import { Card, CardHeader, CardTitle, CardDescription, CardFooter, CardContent } from "@/components/ui/card";
 import { ModalKey, setModal } from '@/redux/features/modals/modalSlice';
+import Map from "../map/Map";
+import { IListing } from "@/types";
 
 interface ListingInfoProps {
-  description?: string;
-  guestCount?: number;
-  roomCount?: number;
-  bathroomCount?: number;
-  category?: {
-    icon: IconType,
-    label: string;
-    description: string;
-  } | undefined
-  locationValue?: string;
-  img: string;
+  listing: IListing;
 }
 
 const newListings = [
@@ -41,6 +32,8 @@ const newListings = [
     price: 15,
     location: 'Uttara, Dhaka',
     isSaved: false,
+    latitude: 23.873751,
+    longitude: 90.396454,
   },
   {
     id: 2,
@@ -54,6 +47,8 @@ const newListings = [
     price: 23,
     location: 'Mirpur 10, Dhaka',
     isSaved: false,
+    latitude: 23.8069,
+    longitude: 90.3687,
   },
   {
     id: 3,
@@ -67,6 +62,8 @@ const newListings = [
     price: 10,
     location: 'Chakbazar, Chattogram',
     isSaved: false,
+    latitude: 22.3518,
+    longitude: 91.8331,
   },
 ]
 
@@ -103,31 +100,24 @@ export const features: IFeature[] = [
   },
 ]
 
-const ListingInfo: React.FC<ListingInfoProps> = ({
-  description = '',
-  guestCount = 1,
-  roomCount = 1,
-  bathroomCount = 1,
-  category,
-  img
-}) => {
+const ListingInfo: React.FC<ListingInfoProps> = ({ listing }) => {
   const dispatch = useDispatch();
   return (
-    <div className="flex gap-[10%] flex-col lg:flex-row">
-      <div className="flex flex-col gap-4 sm:w-full lg:w-[60%]">
-        <h1 className="text-2xl font-bold">BDT 80 Thousand</h1>
+    <div className="flex gap-[5%] flex-col lg:flex-row">
+      <div className="flex flex-col gap-4 sm:w-full lg:w-[55%]">
+        <h1 className="text-2xl font-bold">BDT {listing.price} Thousand</h1>
         <div className="flex gap-1 items-center">
           <IoLocation size={22} />
-          <h4 className="text-md font-medium">Sector 3, Uttara, Dhaka</h4>
+          <h4 className="text-md font-medium">{listing.location}</h4>
         </div>
         <div className="flex gap-7">
           <div className="flex gap-1 items-center">
             <FaBed size={20} />
-            <span className="font-sm">3 Beds</span>
+            <span className="font-sm">{listing.roomCount} Beds</span>
           </div>
           <div className="flex gap-1 items-center">
             <FaBath size={20} />
-            <span className="font-sm">4 Baths</span>
+            <span className="font-sm">{listing.bathroomCount} Baths</span>
           </div>
           <div className="flex gap-1 items-center">
             <MdAllInbox size={20} />
@@ -209,10 +199,10 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           </div>
         </div>
       </div>
-      <div className="sm:w-full lg:w-[30%] mt-[5%] justify-center lg:justify-normal">
+      <div className="sm:w-full lg:w-[40%] mt-[5%] justify-center lg:justify-normal">
         <Card className="w-[350px]">
           <CardHeader>
-            <CardTitle>BDT 80K Month</CardTitle>
+            <CardTitle>BDT {listing.price}k Month</CardTitle>
             <CardDescription className="mt-4">Hosted by <span className="text-primary">stuRENT</span></CardDescription>
           </CardHeader>
           <CardContent>
@@ -222,6 +212,10 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
             <Button size='lg'>Rent This Room</Button>
           </CardFooter>
         </Card>
+        <div className="w-full h-[600px] mt-4 mb-24">
+          <h1 className="text-2xl font-bold mb-2">Location in Map</h1>
+          <Map items={[listing]} />
+        </div>
       </div>
     </div>
    );

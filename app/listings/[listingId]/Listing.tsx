@@ -33,12 +33,14 @@ const ListingClient: React.FC<ListingClientProps> = ({
     price: 150,
     location: '',
     isSaved: false,
+    latitude: 0,
+    longitude: 0,
   };
   const { data, isFetching } = useGetSinglePropertyQuery(id);
 
   return (
     <Container>
-      <div className="max-w-[90%] md:max-w-[80%] m-auto pt-[120px]">
+      <div className="w-full m-auto pt-[120px]">
         <div className="flex flex-col gap-2">
           <div className="flex justify-between items-center">
             <Heading title={listing.title} />
@@ -76,13 +78,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
             </Gallery>
           </div>
           <ListingInfo
-            category={listing.category}
-            description={listing?.description}
-            roomCount={listing?.roomCount}
-            guestCount={listing?.guestCount}
-            bathroomCount={listing?.bathroomCount}
-            locationValue={listing.location}
-            img={listing.featuredImg}
+            listing={listing}
           />
         </div>
       </div>

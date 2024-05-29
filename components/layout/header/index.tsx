@@ -51,7 +51,7 @@ const Header = () => {
   }, [])
 
   return (
-    <div className={`w-full bg-background z-10 shadow-sm sticky top-0 transition-transform duration-300 ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
+    <div className={`w-full bg-background z-20 shadow-sm sticky top-0 transition-transform duration-300 ${visible ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="py-4 border-b-[1px] border-mute">
         <Container>
           <div
