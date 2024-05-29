@@ -13,6 +13,8 @@ export const listings: IListing[] = [
     price: 15,
     location: 'Uttara, Dhaka',
     isSaved: false,
+    latitude: 23.873751,
+    longitude: 90.396454,
   },
   {
     id: 2,
@@ -26,6 +28,8 @@ export const listings: IListing[] = [
     price: 30,
     location: 'Mirpur 10, Dhaka',
     isSaved: false,
+    latitude: 23.8069,
+    longitude: 90.3687,
   },
   {
     id: 3,
@@ -39,6 +43,8 @@ export const listings: IListing[] = [
     price: 12,
     location: 'Chakbazar, Chattogram',
     isSaved: false,
+    latitude: 22.3518,
+    longitude: 91.8331,
   },
   {
     id: 4,
@@ -52,6 +58,8 @@ export const listings: IListing[] = [
     price: 15,
     location: 'Uttara, Dhaka',
     isSaved: false,
+    latitude: 23.873751,
+    longitude: 90.396454,
   },
   {
     id: 5,
@@ -65,6 +73,8 @@ export const listings: IListing[] = [
     price: 30,
     location: 'Mirpur 10, Dhaka',
     isSaved: false,
+    latitude: 23.8069,
+    longitude: 90.3687,
   },
   {
     id: 6,
@@ -78,6 +88,8 @@ export const listings: IListing[] = [
     price: 10,
     location: 'Chakbazar, Chattogram',
     isSaved: false,
+    latitude: 22.3518,
+    longitude: 91.8331,
   },
   {
     id: 7,
@@ -91,6 +103,9 @@ export const listings: IListing[] = [
     price: 10,
     location: 'Uttara, Dhaka',
     isSaved: false,
+    latitude: 23.873751,
+    longitude: 90.396454,
+    
   },
   {
     id: 8,
@@ -104,6 +119,8 @@ export const listings: IListing[] = [
     price: 31,
     location: 'Mirpur 10, Dhaka',
     isSaved: false,
+    latitude: 23.8069,
+    longitude: 90.3687,
   },
   {
     id: 9,
@@ -117,6 +134,8 @@ export const listings: IListing[] = [
     price: 13,
     location: 'Chakbazar, Chattogram',
     isSaved: false,
+    latitude: 22.3518,
+    longitude: 91.8331,
   },
   {
     id: 10,
@@ -130,6 +149,8 @@ export const listings: IListing[] = [
     price: 10,
     location: 'Uttara, Dhaka',
     isSaved: false,
+    latitude: 23.873751,
+    longitude: 90.396454,
   },
   {
     id: 11,
@@ -143,6 +164,8 @@ export const listings: IListing[] = [
     price: 20,
     location: 'Mirpur 10, Dhaka',
     isSaved: false,
+    latitude: 23.8069,
+    longitude: 90.3687,
   },
   {
     id: 12,
@@ -162,6 +185,8 @@ export const listings: IListing[] = [
     price: 16,
     location: 'Chakbazar, Chattogram',
     isSaved: false,
+    latitude: 22.3518,
+    longitude: 91.8331,
   },
 ]
 
