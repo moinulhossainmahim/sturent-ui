@@ -103,8 +103,8 @@ export const features: IFeature[] = [
 const ListingInfo: React.FC<ListingInfoProps> = ({ listing }) => {
   const dispatch = useDispatch();
   return (
-    <div className="flex gap-[10%] flex-col lg:flex-row">
-      <div className="flex flex-col gap-4 sm:w-full lg:w-[60%]">
+    <div className="flex gap-[5%] flex-col lg:flex-row">
+      <div className="flex flex-col gap-4 sm:w-full lg:w-[55%]">
         <h1 className="text-2xl font-bold">BDT {listing.price} Thousand</h1>
         <div className="flex gap-1 items-center">
           <IoLocation size={22} />
@@ -199,7 +199,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({ listing }) => {
           </div>
         </div>
       </div>
-      <div className="sm:w-full lg:w-[30%] mt-[5%] justify-center lg:justify-normal">
+      <div className="sm:w-full lg:w-[40%] mt-[5%] justify-center lg:justify-normal">
         <Card className="w-[350px]">
           <CardHeader>
             <CardTitle>BDT {listing.price}k Month</CardTitle>
@@ -212,7 +212,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({ listing }) => {
             <Button size='lg'>Rent This Room</Button>
           </CardFooter>
         </Card>
-        <div className="w-full h-[600px] mt-4">
+        <div className="w-full h-[600px] mt-4 mb-24">
           <h1 className="text-2xl font-bold mb-2">Location in Map</h1>
           <Map items={[listing]} />
         </div>
