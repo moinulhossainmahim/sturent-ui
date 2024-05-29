@@ -16,7 +16,7 @@ const Map: React.FC<MapsProps> = ({ items }) => {
     center: [23.8041, 90.4152],
     zoom: 7,
     scrollWheelZoom: false,
-    className: "w-full h-full rounded-lg"
+    className: "w-full h-full rounded-lg z-10"
   };
 
   return (
