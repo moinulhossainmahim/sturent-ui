@@ -12,7 +12,7 @@ const ListingHeader = ({ layout, setLayout } : ListingHeaderProps) => {
   const setActiveStyles = (pattern: string) => {
     return `text-xl btn btn-circle btn-sm ${
       pattern === layout
-        ? 'border border-card-foreground rounded-sm p-1 bg-card-foreground'
+        ? 'border border-card-foreground rounded-sm p-1 bg-card-foreground text-muted'
         : 'border border-card-foreground rounded-sm p-1'
     }`;
   };
@@ -25,14 +25,14 @@ const ListingHeader = ({ layout, setLayout } : ListingHeaderProps) => {
           onClick={() => setLayout('grid')}
           className={setActiveStyles('grid')}
         >
-          <BsFillGridFill color={layout === 'grid' ? 'white' : 'inherit'} />
+          <BsFillGridFill />
         </button>
         <button
           type='button'
           onClick={() => setLayout('list')}
           className={setActiveStyles('list')}
         >
-          <BsList color={layout === 'list' ? 'white' : 'inherit'} />
+          <BsList />
         </button>
       </div>
       <h4 className='font-medium text-md'>
