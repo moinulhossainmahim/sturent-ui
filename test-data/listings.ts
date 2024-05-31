@@ -105,7 +105,6 @@ export const listings: IListing[] = [
     isSaved: false,
     latitude: 23.873751,
     longitude: 90.396454,
-    
   },
   {
     id: 8,
