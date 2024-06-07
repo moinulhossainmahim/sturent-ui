@@ -17,9 +17,11 @@ const UserMenu= () => {
   const dispatch = useDispatch();
   const [logout] = useLogoutMutation();
   const [isOpen, setIsOpen] = useState(false);
-  const { user, isAuthenticated } = useSelector((state: ReduxStore) => state.auth);
+  let { user, isAuthenticated } = useSelector((state: ReduxStore) => state.auth);
   const registerModal = useSelector((state: ReduxStore) => state.modal.RegisterModal);
   const loginModal = useSelector((state: ReduxStore) => state.modal.LoginModal);
+
+  isAuthenticated = true;
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
@@ -87,7 +89,7 @@ const UserMenu= () => {
             <div>
               <Image
                 className="rounded-full"
-                src={ isAuthenticated && user.picture ? user.picture : '/assets/placeholder.jpg'}
+                src={ isAuthenticated && user?.picture ? user.picture : '/assets/placeholder.jpg'}
                 width={30}
                 height={30}
                 alt="avatar"
@@ -155,9 +157,23 @@ const UserMenu= () => {
                       />
                   </Link>
                   <MenuItem
+                    onClick={() => {
+                      dispatch(setModal({ key: ModalKey.LoginModal, value: true }))
+                      toggleOpen();
+                    }}
+                    label="Login"
+                  />
+                  <MenuItem
+                    onClick={() => {
+                      dispatch(setModal({ key: ModalKey.RegisterModal, value: true }))
+                      toggleOpen();
+                    }}
+                    label="Sign up"
+                  />
+                  {/* <MenuItem
                     onClick={handleLogout}
                     label="Logout"
-                  />
+                  /> */}
                 </>
               )}
             </div>

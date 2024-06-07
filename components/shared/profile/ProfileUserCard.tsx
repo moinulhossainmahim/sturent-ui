@@ -19,8 +19,8 @@ const ProfileUserCard = () => {
         <CardContent className='flex flex-col justify-center items-center pt-6'>
           <div className="relative">
             <Image
-              src={auth?.user?.picture || ''}
-              alt='/assets/placeholder.jpg'
+              src={auth?.user?.picture || '/assets/placeholder.jpg'}
+              alt='profile'
               height={80}
               width={120}
               placeholder='blur'
@@ -34,7 +34,7 @@ const ProfileUserCard = () => {
               <FaCamera className="text-secondary" />
             </button>
           </div>
-          <h6 className="text-2xl font-bold mt-4">{auth?.user?.fullName || ''}</h6>
+          <h6 className="text-2xl font-bold mt-4">{auth?.user?.fullName || 'Moinul Hossain'}</h6>
         </CardContent>
       </Card>
       <ProfileImageUploadModal />
